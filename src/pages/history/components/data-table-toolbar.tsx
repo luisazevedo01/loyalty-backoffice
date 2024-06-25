@@ -3,9 +3,9 @@ import { Table } from '@tanstack/react-table'
 
 import { Button } from '@/components/custom/button'
 import { Input } from '@/components/ui/input'
-import { DataTableViewOptions } from '../components/data-table-view-options'
+import { DataTableViewOptions } from './data-table-view-options'
 
-import { priorities, statuses } from '../data/data'
+import { mock_shops, mock_type_of_loyalty } from '../data/data'
 import { DataTableFacetedFilter } from './data-table-faceted-filter'
 
 interface DataTableToolbarProps<TData> {
@@ -29,18 +29,18 @@ export function DataTableToolbar<TData>({
           className='h-8 w-[150px] lg:w-[250px]'
         />
         <div className='flex gap-x-2'>
-          {table.getColumn('status') && (
+          {table.getColumn('type') && (
             <DataTableFacetedFilter
-              column={table.getColumn('status')}
-              title='Status'
-              options={statuses}
+              column={table.getColumn('type')}
+              title='Type of Loyalty'
+              options={mock_type_of_loyalty}
             />
           )}
-          {table.getColumn('priority') && (
+          {table.getColumn('shops') && (
             <DataTableFacetedFilter
-              column={table.getColumn('priority')}
-              title='Priority'
-              options={priorities}
+              column={table.getColumn('shops')}
+              title='Shops'
+              options={mock_shops}
             />
           )}
         </div>

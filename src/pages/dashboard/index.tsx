@@ -14,15 +14,14 @@ import { UserNav } from '@/components/user-nav'
 import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
 import { RecentSales } from './components/recent-sales'
 import { Overview } from './components/overview'
+import { IconDownload } from '@tabler/icons-react'
 
 export default function Dashboard() {
   return (
     <Layout>
       {/* ===== Top Heading ===== */}
       <LayoutHeader>
-        <TopNav links={topNav} />
         <div className='ml-auto flex items-center space-x-4'>
-          <Search />
           <ThemeSwitch />
           <UserNav />
         </div>
@@ -35,7 +34,10 @@ export default function Dashboard() {
             Dashboard
           </h1>
           <div className='flex items-center space-x-2'>
-            <Button>Download</Button>
+            <Button className='flex gap-1'>
+              Extract
+              <IconDownload size={18} />
+            </Button>
           </div>
         </div>
         <Tabs
@@ -43,20 +45,20 @@ export default function Dashboard() {
           defaultValue='overview'
           className='space-y-4'
         >
-          <div className='w-full overflow-x-scroll pb-2'>
+          {/*           <div className='w-full overflow-x-scroll pb-2'>
             <TabsList>
               <TabsTrigger value='overview'>Overview</TabsTrigger>
               <TabsTrigger value='analytics'>Analytics</TabsTrigger>
               <TabsTrigger value='reports'>Reports</TabsTrigger>
               <TabsTrigger value='notifications'>Notifications</TabsTrigger>
             </TabsList>
-          </div>
+          </div> */}
           <TabsContent value='overview' className='space-y-4'>
             <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-4'>
               <Card>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
                   <CardTitle className='text-sm font-medium'>
-                    Total Revenue
+                    Loyal customers
                   </CardTitle>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -72,7 +74,7 @@ export default function Dashboard() {
                   </svg>
                 </CardHeader>
                 <CardContent>
-                  <div className='text-2xl font-bold'>$45,231.89</div>
+                  <div className='text-2xl font-bold'>1 231</div>
                   <p className='text-xs text-muted-foreground'>
                     +20.1% from last month
                   </p>
@@ -81,7 +83,7 @@ export default function Dashboard() {
               <Card>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
                   <CardTitle className='text-sm font-medium'>
-                    Subscriptions
+                    Discounts used
                   </CardTitle>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -99,7 +101,7 @@ export default function Dashboard() {
                   </svg>
                 </CardHeader>
                 <CardContent>
-                  <div className='text-2xl font-bold'>+2350</div>
+                  <div className='text-2xl font-bold'>2 350</div>
                   <p className='text-xs text-muted-foreground'>
                     +180.1% from last month
                   </p>
@@ -107,7 +109,9 @@ export default function Dashboard() {
               </Card>
               <Card>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-                  <CardTitle className='text-sm font-medium'>Sales</CardTitle>
+                  <CardTitle className='text-sm font-medium'>
+                    Spendings
+                  </CardTitle>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     viewBox='0 0 24 24'
@@ -123,7 +127,7 @@ export default function Dashboard() {
                   </svg>
                 </CardHeader>
                 <CardContent>
-                  <div className='text-2xl font-bold'>+12,234</div>
+                  <div className='text-2xl font-bold'>€ 12,234</div>
                   <p className='text-xs text-muted-foreground'>
                     +19% from last month
                   </p>
@@ -132,7 +136,7 @@ export default function Dashboard() {
               <Card>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
                   <CardTitle className='text-sm font-medium'>
-                    Active Now
+                    Nº of Stamps
                   </CardTitle>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -148,7 +152,7 @@ export default function Dashboard() {
                   </svg>
                 </CardHeader>
                 <CardContent>
-                  <div className='text-2xl font-bold'>+573</div>
+                  <div className='text-2xl font-bold'>10 573</div>
                   <p className='text-xs text-muted-foreground'>
                     +201 since last hour
                   </p>
@@ -166,9 +170,9 @@ export default function Dashboard() {
               </Card>
               <Card className='col-span-1 lg:col-span-3'>
                 <CardHeader>
-                  <CardTitle>Recent Sales</CardTitle>
+                  <CardTitle>Recent Loyal Customers</CardTitle>
                   <CardDescription>
-                    You made 265 sales this month.
+                    265 new loyal customers this month.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>

@@ -5,7 +5,6 @@ import {
   CheckCircledIcon,
   CircleIcon,
   CrossCircledIcon,
-  QuestionMarkCircledIcon,
   StopwatchIcon,
 } from '@radix-ui/react-icons'
 
@@ -24,16 +23,16 @@ export const labels = [
   },
 ]
 
-export const statuses = [
+export const mock_type_of_loyalty = [
   {
-    value: 'backlog',
-    label: 'Backlog',
-    icon: QuestionMarkCircledIcon,
+    value: 'standard',
+    label: 'Standard',
+    icon: CircleIcon,
   },
   {
-    value: 'todo',
-    label: 'Todo',
-    icon: CircleIcon,
+    value: 'premium',
+    label: 'Premium',
+    icon: CheckCircledIcon,
   },
   {
     value: 'in progress',
@@ -52,20 +51,20 @@ export const statuses = [
   },
 ]
 
-export const priorities = [
+export const mock_shops = [
   {
-    label: 'Low',
-    value: 'low',
+    label: 'Loja do Cabo',
+    value: 'cabo',
     icon: ArrowDownIcon,
   },
   {
-    label: 'Medium',
-    value: 'medium',
+    label: 'Loja da Praia',
+    value: 'praia',
     icon: ArrowRightIcon,
   },
   {
-    label: 'High',
-    value: 'high',
+    label: 'Loja de Angra',
+    value: 'angra',
     icon: ArrowUpIcon,
   },
 ]

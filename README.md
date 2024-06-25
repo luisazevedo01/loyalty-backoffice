@@ -1,3 +1,21 @@
-# Shadcn Admin Dashboard
+# Loyalty Backoffice
 
-Admin Dashboard UI crafted with Shadcn and Vite. 
+## Development
+`` 
+$    pnpm install
+``
+
+`` 
+$    pnpm run dev
+``
+
+
+## Test Production
+
+``
+$    pnpm run build
+`` 
+
+``
+$    pnpm run preview
+`` 
