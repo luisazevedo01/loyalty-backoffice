@@ -37,40 +37,40 @@ export const sidelinks: SideLink[] = [
   {
     title: 'Dashboard',
     label: '',
-    href: '/',
+    href: '/app',
     icon: <IconLayoutDashboard size={18} />,
   },
   {
     title: 'History',
     label: '3',
-    href: '/history',
+    href: '/app/history',
     icon: <IconChecklist size={18} />,
   },
   {
     title: 'Reviews',
     label: '9',
-    href: '/reviews',
+    href: '/app/reviews',
     icon: <IconMessages size={18} />,
   },
   {
     title: 'Users',
     label: '',
-    href: '/users',
+    href: '/app/users',
     icon: <IconUsers size={18} />,
   },
   {
     title: 'Promotions',
     label: '',
-    href: '/promotions',
+    href: '/app/promotions',
     icon: <IconChartHistogram size={18} />,
   },
   {
     title: 'Settings',
     label: '',
-    href: '/settings',
+    href: '/app/settings',
     icon: <IconSettings size={18} />,
   },
-  {
+  /*   {
     title: 'Temporary',
     label: '',
     href: '/temporary',
@@ -89,7 +89,7 @@ export const sidelinks: SideLink[] = [
         icon: <IconBoxSeam size={18} />,
       },
     ],
-  },
+  }, 
   {
     title: 'Error Pages',
     label: '',
@@ -153,5 +153,5 @@ export const sidelinks: SideLink[] = [
         icon: <IconHexagonNumber5 size={18} />,
       },
     ],
-  },
+  }, */
 ]

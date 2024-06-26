@@ -6,7 +6,7 @@ import MaintenanceError from './pages/errors/maintenance-error'
 const router = createBrowserRouter([
   // Auth routes
   {
-    path: '/sign-in',
+    path: '/',
     lazy: async () => ({
       Component: (await import('./pages/auth/sign-in')).default,
     }),
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
 
   // Main routes
   {
-    path: '/',
+    path: '/app',
     lazy: async () => {
       const AppShell = await import('./components/app-shell')
       return { Component: AppShell.default }

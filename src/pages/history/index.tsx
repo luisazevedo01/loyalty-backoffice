@@ -21,7 +21,7 @@ export default function Tasks() {
           <div>
             <h2 className='text-2xl font-bold tracking-tight'>History!</h2>
             <p className='text-muted-foreground'>
-              Here&apos;s a list of your scans!
+              Here&apos;s a history of your scans!
             </p>
           </div>
         </div>

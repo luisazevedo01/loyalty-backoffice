@@ -3,31 +3,31 @@ import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts'
 const data = [
   {
     name: 'Mon',
-    total: Math.floor(Math.random() * 5000) + 1000,
+    total: Math.floor(Math.random() * 3000) + 500,
   },
   {
     name: 'Tue',
-    total: Math.floor(Math.random() * 5000) + 1000,
+    total: Math.floor(Math.random() * 1000) + 500,
   },
   {
     name: 'Wed',
-    total: Math.floor(Math.random() * 5000) + 1000,
+    total: Math.floor(Math.random() * 1000) + 500,
   },
   {
     name: 'Thu',
-    total: Math.floor(Math.random() * 5000) + 1000,
+    total: Math.floor(Math.random() * 1000) + 500,
   },
   {
     name: 'Fri',
-    total: Math.floor(Math.random() * 5000) + 1000,
+    total: Math.floor(Math.random() * 1000) + 500,
   },
   {
     name: 'Sat',
-    total: Math.floor(Math.random() * 5000) + 1000,
+    total: Math.floor(Math.random() * 1000) + 500,
   },
   {
     name: 'Sun',
-    total: Math.floor(Math.random() * 5000) + 1000,
+    total: Math.floor(Math.random() * 1000) + 500,
   },
 ]
 
@@ -47,7 +47,8 @@ export function Overview() {
           fontSize={12}
           tickLine={false}
           axisLine={false}
-          tickFormatter={(value) => `$${value}`}
+          tickFormatter={(value) => `${value}`}
+          tickCount={5}
         />
         <Bar
           dataKey='total'
