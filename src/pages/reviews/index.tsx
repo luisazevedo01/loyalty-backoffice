@@ -126,10 +126,10 @@ export default function Reviews() {
                 <div className='flex'>
                   {Array.from({ length: 5 }).map((_, idx) => {
                     if (review.stars > idx) {
-                      return <IconStarFilled color='#ffe14d' size={16} />
+                      return <IconStarFilled color='#f0c800' size={16} />
                     }
                     if (review.stars <= idx) {
-                      return <IconStar color='#ffe14d' size={16} />
+                      return <IconStar color='#f0c800' size={16} />
                     }
                   })}
                 </div>

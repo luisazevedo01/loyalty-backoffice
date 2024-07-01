@@ -1,25 +1,12 @@
 import {
-  IconApps,
-  IconBarrierBlock,
-  IconBoxSeam,
   IconChartHistogram,
   IconChecklist,
-  IconComponents,
-  IconError404,
-  IconExclamationCircle,
-  IconHexagonNumber1,
-  IconHexagonNumber2,
-  IconHexagonNumber3,
-  IconHexagonNumber4,
-  IconHexagonNumber5,
   IconLayoutDashboard,
   IconMessages,
-  IconRouteAltLeft,
-  IconServerOff,
   IconSettings,
-  IconTruck,
-  IconUserShield,
   IconUsers,
+  IconBuildingWarehouse,
+  IconFileEuro,
 } from '@tabler/icons-react'
 
 export interface NavLink {
@@ -62,7 +49,13 @@ export const sidelinks: SideLink[] = [
     title: 'Promotions',
     label: '',
     href: '/app/promotions',
-    icon: <IconChartHistogram size={18} />,
+    icon: <IconFileEuro size={18} />,
+  },
+  {
+    title: 'Company',
+    label: '',
+    href: '/app/company',
+    icon: <IconBuildingWarehouse size={18} />,
   },
   {
     title: 'Settings',
