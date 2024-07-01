@@ -3,6 +3,8 @@ import {
   IconAdjustmentsHorizontal,
   IconSortAscendingLetters,
   IconSortDescendingLetters,
+  IconStar,
+  IconStarFilled,
 } from '@tabler/icons-react'
 import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
 import { Input } from '@/components/ui/input'
@@ -14,45 +16,39 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
-import { Search } from '@/components/search'
 import ThemeSwitch from '@/components/theme-switch'
 import { UserNav } from '@/components/user-nav'
-import { Button } from '@/components/custom/button'
-import { apps } from './data'
+import { reviews } from './data'
+import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
+import { getNameInitials } from '@/lib/utils'
 
-const appText = new Map<string, string>([
-  ['all', 'All Apps'],
-  ['connected', 'Connected'],
-  ['notConnected', 'Not Connected'],
-])
-
-export default function Apps() {
+export default function Reviews() {
   const [sort, setSort] = useState('ascending')
-  const [appType, setAppType] = useState('all')
+  const [reviewType, setReviewType] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
 
-  const filteredApps = apps
+  const filteredReviews = reviews
     .sort((a, b) =>
-      sort === 'ascending'
-        ? a.name.localeCompare(b.name)
-        : b.name.localeCompare(a.name)
+      sort === 'ascending' ? a.by.localeCompare(b.by) : b.by.localeCompare(a.by)
     )
-    .filter((app) =>
-      appType === 'connected'
-        ? app.connected
-        : appType === 'notConnected'
-          ? !app.connected
+    .filter((review) =>
+      reviewType === 'connected'
+        ? review.connected
+        : reviewType === 'notConnected'
+          ? !review.connected
           : true
     )
-    .filter((app) => app.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    .filter((review) =>
+      review.by.toLowerCase().includes(searchTerm.toLowerCase())
+    )
 
   return (
     <Layout fadedBelow fixedHeight>
       {/* ===== Top Heading ===== */}
       <LayoutHeader>
         <div className='flex w-full items-center justify-between'>
-          <Search />
-          <div className='flex items-center space-x-4'>
+          {/* <Search /> */}
+          <div className='ml-auto flex items-center space-x-4'>
             <ThemeSwitch />
             <UserNav />
           </div>
@@ -62,22 +58,20 @@ export default function Apps() {
       {/* ===== Content ===== */}
       <LayoutBody className='flex flex-col' fixedHeight>
         <div>
-          <h1 className='text-2xl font-bold tracking-tight'>
-            App Integrations
-          </h1>
+          <h1 className='text-2xl font-bold tracking-tight'>Reviews</h1>
           <p className='text-muted-foreground'>
-            Here&apos;s a list of your apps for the integration!
+            Here&apos;s a list of your reviews!
           </p>
         </div>
         <div className='my-4 flex items-end justify-between sm:my-0 sm:items-center'>
           <div className='flex flex-col gap-4 sm:my-4 sm:flex-row'>
             <Input
-              placeholder='Filter apps...'
+              placeholder='Filter by user...'
               className='h-9 w-40 lg:w-[250px]'
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <Select value={appType} onValueChange={setAppType}>
+            {/*             <Select value={appType} onValueChange={setAppType}>
               <SelectTrigger className='w-36'>
                 <SelectValue>{appText.get(appType)}</SelectValue>
               </SelectTrigger>
@@ -86,7 +80,7 @@ export default function Apps() {
                 <SelectItem value='connected'>Connected</SelectItem>
                 <SelectItem value='notConnected'>Not Connected</SelectItem>
               </SelectContent>
-            </Select>
+            </Select> */}
           </div>
 
           <Select value={sort} onValueChange={setSort}>
@@ -113,28 +107,43 @@ export default function Apps() {
         </div>
         <Separator className='shadow' />
         <ul className='no-scrollbar grid gap-4 overflow-y-scroll pb-16 pt-4 md:grid-cols-2 lg:grid-cols-3'>
-          {filteredApps.map((app) => (
+          {filteredReviews.map((review) => (
             <li
-              key={app.name}
+              key={review.by}
               className='rounded-lg border p-4 hover:shadow-md'
             >
               <div className='mb-8 flex items-center justify-between'>
                 <div
                   className={`flex size-10 items-center justify-center rounded-lg bg-muted p-2`}
                 >
-                  {app.logo}
+                  <Avatar className='m-auto h-8 w-8'>
+                    <AvatarImage src='/avatars/01.png' alt='@shadcn' />
+                    <AvatarFallback>
+                      {getNameInitials(review.by)}
+                    </AvatarFallback>
+                  </Avatar>
                 </div>
-                <Button
+                <div className='flex'>
+                  {Array.from({ length: 5 }).map((_, idx) => {
+                    if (review.stars > idx) {
+                      return <IconStarFilled color='#ffe14d' size={16} />
+                    }
+                    if (review.stars <= idx) {
+                      return <IconStar color='#ffe14d' size={16} />
+                    }
+                  })}
+                </div>
+                {/*                 <Button
                   variant='outline'
                   size='sm'
-                  className={`${app.connected ? 'border border-blue-300 bg-blue-50 hover:bg-blue-100 dark:border-blue-700 dark:bg-blue-950 dark:hover:bg-blue-900' : ''}`}
+                  className={`${review.connected ? 'border border-blue-300 bg-blue-50 hover:bg-blue-100 dark:border-blue-700 dark:bg-blue-950 dark:hover:bg-blue-900' : ''}`}
                 >
-                  {app.connected ? 'Connected' : 'Connect'}
-                </Button>
+                  {review.connected ? 'Connected' : 'Connect'}
+                </Button> */}
               </div>
               <div>
-                <h2 className='mb-1 font-semibold'>{app.name}</h2>
-                <p className='line-clamp-2 text-gray-500'>{app.desc}</p>
+                <h2 className='mb-1 font-semibold'>{review.by}</h2>
+                <p className='line-clamp-2 text-gray-500'>{review.review}</p>
               </div>
             </li>
           ))}

@@ -60,19 +60,19 @@ const router = createBrowserRouter([
       {
         path: 'reviews',
         lazy: async () => ({
-          Component: (await import('@/components/coming-soon')).default,
+          Component: (await import('@/pages/reviews')).default,
         }),
       },
       {
         path: 'apps',
         lazy: async () => ({
-          Component: (await import('@/pages/apps')).default,
+          Component: (await import('@/components/coming-soon')).default,
         }),
       },
       {
         path: 'users',
         lazy: async () => ({
-          Component: (await import('@/components/coming-soon')).default,
+          Component: (await import('@/pages/users')).default,
         }),
       },
       {

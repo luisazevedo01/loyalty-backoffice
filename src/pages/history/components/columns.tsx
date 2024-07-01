@@ -9,7 +9,7 @@ import { labels, mock_shops, mock_type_of_loyalty } from '../data/data'
 import { Task } from '../data/schema'
 
 export const columns: ColumnDef<Task>[] = [
-  {
+  /*   {
     id: 'select',
     header: ({ table }) => (
       <Checkbox
@@ -32,7 +32,7 @@ export const columns: ColumnDef<Task>[] = [
     ),
     enableSorting: false,
     enableHiding: false,
-  },
+  }, */
   {
     accessorKey: 'id',
     header: ({ column }) => (
