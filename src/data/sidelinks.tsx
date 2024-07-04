@@ -40,9 +40,9 @@ export const sidelinks: SideLink[] = [
     icon: <IconMessages size={18} />,
   },
   {
-    title: 'Users',
+    title: 'Employees',
     label: '',
-    href: '/app/users',
+    href: '/app/employees',
     icon: <IconUsers size={18} />,
   },
   {

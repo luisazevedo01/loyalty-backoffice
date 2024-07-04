@@ -1,4 +1,4 @@
-export const users = [
+export const employees = [
   {
     name: 'Pedro António',
     location: 'Portugal',
@@ -17,14 +17,14 @@ export const users = [
     name: 'Carlos Freitas',
     location: 'Portugal',
     company: 'Caseiro',
-    role: 'Manager',
+    role: 'Employee',
     active: true,
   },
   {
     name: 'João Pedro',
     location: 'Portugal',
     company: 'Caseiro',
-    role: 'Manager',
+    role: 'Chief',
     active: true,
   },
   {

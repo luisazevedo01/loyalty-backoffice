@@ -224,7 +224,7 @@ export default function EditCompanyForm() {
             </FormItem>
           )}
         />
-        <Button type='submit'>Add company</Button>
+        <Button type='submit'>Update company</Button>
       </form>
     </Form>
   )

@@ -17,7 +17,7 @@ import { Separator } from '@/components/ui/separator'
 import ThemeSwitch from '@/components/theme-switch'
 import { UserNav } from '@/components/user-nav'
 import { Button } from '@/components/custom/button'
-import { users } from './data'
+import { employees } from './data'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { getNameInitials } from '@/lib/utils'
 
@@ -27,12 +27,12 @@ const appText = new Map<string, string>([
   ['chief', 'Chief'],
 ])
 
-export default function Apps() {
+export default function Employees() {
   const [sort, setSort] = useState('ascending')
   const [userType, setUserType] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
 
-  const filteredUsers = users
+  const filteredEmployees = employees
     .sort((a, b) =>
       sort === 'ascending'
         ? a.name.localeCompare(b.name)
@@ -54,12 +54,23 @@ export default function Apps() {
 
       {/* ===== Content ===== */}
       <LayoutBody className='flex flex-col' fixedHeight>
-        <div>
+        <div className='flex items-center justify-between space-y-2'>
+          <div>
+            <h1 className='text-2xl font-bold tracking-tight'>Employees</h1>
+            <p className='text-muted-foreground'>
+              Here&apos;s a list of employees associated to your company!
+            </p>
+          </div>
+          <div className='flex items-center space-x-2'>
+            <Button className='flex gap-1'>Add Employee</Button>
+          </div>
+        </div>
+        {/*         <div>
           <h1 className='text-2xl font-bold tracking-tight'>Users</h1>
           <p className='text-muted-foreground'>
             Here&apos;s a list of users associated to your company!
           </p>
-        </div>
+        </div> */}
         <div className='my-4 flex items-end justify-between sm:my-0 sm:items-center'>
           <div className='flex flex-col gap-4 sm:my-4 sm:flex-row'>
             <Input
@@ -94,9 +105,9 @@ export default function Apps() {
         </div>
         <Separator className='shadow' />
         <ul className='no-scrollbar grid gap-4 overflow-y-scroll pb-16 pt-4 md:grid-cols-2 lg:grid-cols-3'>
-          {filteredUsers.map((user) => (
+          {filteredEmployees.map((employee) => (
             <li
-              key={user.name}
+              key={employee.name}
               className='rounded-lg border p-4 hover:shadow-md'
             >
               <div className='mb-8 flex items-center justify-between'>
@@ -106,21 +117,23 @@ export default function Apps() {
                   <Avatar className='m-auto h-8 w-8'>
                     <AvatarImage src='/avatars/01.png' alt='@shadcn' />
                     <AvatarFallback>
-                      {getNameInitials(user.name)}
+                      {getNameInitials(employee.name)}
                     </AvatarFallback>
                   </Avatar>
                 </div>
                 <Button
                   variant='outline'
                   size='sm'
-                  className={`${user.active ? 'border border-blue-300 bg-blue-50 hover:bg-blue-100 dark:border-blue-700 dark:bg-blue-950 dark:hover:bg-blue-900' : ''}`}
+                  className={
+                    'border border-red-300 bg-red-50 hover:bg-red-100 dark:border-red-700 dark:bg-red-950 dark:hover:bg-red-900'
+                  }
                 >
-                  {user.active ? 'Active' : 'Not Active'}
+                  Remove
                 </Button>
               </div>
               <div>
-                <h2 className='mb-1 font-semibold'>{user.name}</h2>
-                <p className='line-clamp-2 text-gray-500'>{user.role}</p>
+                <h2 className='mb-1 font-semibold'>{employee.name}</h2>
+                <p className='line-clamp-2 text-gray-500'>{employee.role}</p>
               </div>
             </li>
           ))}

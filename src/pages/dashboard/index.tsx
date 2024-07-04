@@ -6,10 +6,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Search } from '@/components/search'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Tabs, TabsContent } from '@/components/ui/tabs'
 import ThemeSwitch from '@/components/theme-switch'
-import { TopNav } from '@/components/top-nav'
 import { UserNav } from '@/components/user-nav'
 import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
 import { RecentSales } from './components/recent-sales'
@@ -45,14 +43,6 @@ export default function Dashboard() {
           defaultValue='overview'
           className='space-y-4'
         >
-          {/*           <div className='w-full overflow-x-scroll pb-2'>
-            <TabsList>
-              <TabsTrigger value='overview'>Overview</TabsTrigger>
-              <TabsTrigger value='analytics'>Analytics</TabsTrigger>
-              <TabsTrigger value='reports'>Reports</TabsTrigger>
-              <TabsTrigger value='notifications'>Notifications</TabsTrigger>
-            </TabsList>
-          </div> */}
           <TabsContent value='overview' className='space-y-4'>
             <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-4'>
               <Card>
@@ -186,26 +176,3 @@ export default function Dashboard() {
     </Layout>
   )
 }
-
-const topNav = [
-  {
-    title: 'Overview',
-    href: '/overview',
-    isActive: true,
-  },
-  {
-    title: 'Customers',
-    href: '/customers',
-    isActive: false,
-  },
-  {
-    title: 'Products',
-    href: '/products',
-    isActive: false,
-  },
-  {
-    title: 'Settings',
-    href: '/settings',
-    isActive: false,
-  },
-]
