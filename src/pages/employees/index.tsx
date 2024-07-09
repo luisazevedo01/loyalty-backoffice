@@ -19,7 +19,8 @@ import { UserNav } from '@/components/user-nav'
 import { Button } from '@/components/custom/button'
 import { employees } from './data'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
-import { getNameInitials } from '@/lib/utils'
+import { getNameInitials } from '@/helpers/getNameInitials'
+
 
 const appText = new Map<string, string>([
   ['employee', 'Employee'],

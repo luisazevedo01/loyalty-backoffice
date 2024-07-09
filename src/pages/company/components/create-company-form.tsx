@@ -23,8 +23,6 @@ import { Textarea } from '@/components/ui/textarea'
 import { toast } from '@/components/ui/use-toast'
 import { cn } from '@/lib/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Separator } from '@radix-ui/react-separator'
-import { useEffect } from 'react'
 
 const companyFormSchema = z.object({
   name: z

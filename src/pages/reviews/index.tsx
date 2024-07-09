@@ -20,7 +20,7 @@ import ThemeSwitch from '@/components/theme-switch'
 import { UserNav } from '@/components/user-nav'
 import { reviews } from './data'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
-import { getNameInitials } from '@/lib/utils'
+import { getNameInitials } from '@/helpers/getNameInitials'
 
 export default function Reviews() {
   const [sort, setSort] = useState('ascending')

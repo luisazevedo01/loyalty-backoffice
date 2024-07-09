@@ -3,9 +3,9 @@ import { UserNav } from '@/components/user-nav'
 import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
 import { DataTable } from './components/data-table'
 import { columns } from './components/columns'
-import { scans } from './data/tasks'
+import { scans } from './data/scans'
 
-export default function Tasks() {
+export default function History() {
   return (
     <Layout>
       {/* ===== Top Heading ===== */}

@@ -1,21 +1,16 @@
-import { Button } from '@/components/custom/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { Search } from '@/components/search'
+import { Card, CardContent } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import ThemeSwitch from '@/components/theme-switch'
-import { TopNav } from '@/components/top-nav'
+
 import { UserNav } from '@/components/user-nav'
 import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
-import { IconDownload } from '@tabler/icons-react'
-import { Separator } from '@radix-ui/react-separator'
-import CreateCompanyForm from './create-company-form'
-import EditCompanyForm from './edit-company-form'
+
+import CreateCompanyForm from './components/create-company-form'
+import EditCompanyForm from './components/edit-company-form'
+import { DataTable } from './components/data-table'
+import { companies } from './data/companies'
+import { columns } from './components/columns'
+import { Button } from '@/components/custom/button'
 
 export default function Company() {
   return (
@@ -32,12 +27,11 @@ export default function Company() {
       <LayoutBody className='space-y-4'>
         <div className='flex items-center justify-between space-y-2'>
           <h1 className='text-2xl font-bold tracking-tight md:text-3xl'>
-            Company
+            Companies
           </h1>
-          {/*           
           <div className='flex items-center space-x-2'>
-            <Button className='flex gap-1'>Next</Button>
-          </div> */}
+            <Button className='flex gap-1'>Add a company</Button>
+          </div>
         </div>
         <Tabs
           orientation='vertical'
@@ -67,6 +61,11 @@ export default function Company() {
                   <EditCompanyForm />
                 </CardContent>
               </Card>
+            </div>
+          </TabsContent>
+          <TabsContent value='companies' className='space-y-4'>
+            <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
+              <DataTable data={companies} columns={columns} />
             </div>
           </TabsContent>
         </Tabs>

@@ -6,13 +6,10 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Search } from '@/components/search'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import ThemeSwitch from '@/components/theme-switch'
-import { TopNav } from '@/components/top-nav'
 import { UserNav } from '@/components/user-nav'
 import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
-import { IconDownload } from '@tabler/icons-react'
 
 export default function Promotions() {
   return (
@@ -128,18 +125,95 @@ export default function Promotions() {
             <div className='grid grid-cols-1 gap-4 lg:grid-cols-7'>
               <Card className='col-span-1 lg:col-span-4'>
                 <CardHeader>
-                  <CardTitle>Overview</CardTitle>
+                  <CardTitle>Available vouchers</CardTitle>
                 </CardHeader>
-                <CardContent className='pl-2'>QR Code</CardContent>
+                <CardContent className='pl-2'>
+                  <ul className='no-scrollbar grid gap-4 overflow-y-scroll pb-16 pt-4 md:grid-cols-1 lg:grid-cols-2'>
+                    <li
+                      key="1"
+                      className='rounded-lg border p-4 hover:shadow-md'
+                    >
+                      <div className='mb-8 flex items-center justify-between'>
+                        <div>
+                          <h2 className='mb-1 font-semibold'>Aquisition Voucher</h2>
+                          <p className='line-clamp-2 text-gray-500'>The Aquisition Voucher will give you 1 after you complete 10</p>
+                        </div>
+                      </div>
+                    </li>
+                    <li
+                      key="2"
+                      className='rounded-lg border p-4 hover:shadow-md'
+                    >
+                      <div className='mb-8 flex items-center justify-between'>
+                        <div>
+                          <h2 className='mb-1 font-semibold'>Two in One Voucher</h2>
+                          <p className='line-clamp-2 text-gray-500'>This voucher allows you to buy 1 and take 2</p>
+                        </div>
+                      </div>
+                    </li>
+                    <li
+                      key="2"
+                      className='rounded-lg border p-4 hover:shadow-md'
+                    >
+                      <div className='mb-8 flex items-center justify-between'>
+                        <div>
+                          <h2 className='mb-1 font-semibold'>Example Voucher</h2>
+                          <p className='line-clamp-2 text-gray-500'>This is just an example on a possible voucher</p>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </CardContent>
               </Card>
               <Card className='col-span-1 lg:col-span-3'>
                 <CardHeader>
-                  <CardTitle>Recent Loyal Customers</CardTitle>
+                  <CardTitle>Available packs</CardTitle>
                   <CardDescription>
-                    265 new loyal customers this month.
+                    Currently we have 3 different types of packs...
                   </CardDescription>
                 </CardHeader>
-                <CardContent>COmpany</CardContent>
+
+                <CardContent>
+                  <div className='mt-2'>
+                    <Card className='col-span-1 lg:col-span-3'>
+                      <CardHeader>
+                        <CardTitle>
+                          <h1>Standard</h1>
+                        </CardTitle>
+                        <CardDescription>
+                          With the Standard pack you may view some
+                          informations...
+                        </CardDescription>
+                      </CardHeader>
+                    </Card>
+                  </div>
+                  <div className='mt-2'>
+                    <Card className='col-span-1 lg:col-span-3'>
+                      <CardHeader>
+                        <CardTitle>
+                          <h1>Silver</h1>
+                        </CardTitle>
+                        <CardDescription>
+                          With the Silver pack you will have a specific
+                          dashboard to help you manage your company...
+                        </CardDescription>
+                      </CardHeader>
+                    </Card>
+                  </div>
+                  <div className='mt-2'>
+                    <Card className='col-span-1 lg:col-span-3'>
+                      <CardHeader>
+                        <CardTitle>
+                          <h1>Gold</h1>
+                        </CardTitle>
+                        <CardDescription>
+                          With the Gold pack you will have a access to all
+                          informaiton available...
+                        </CardDescription>
+                      </CardHeader>
+                    </Card>
+                  </div>
+                </CardContent>
               </Card>
             </div>
           </TabsContent>

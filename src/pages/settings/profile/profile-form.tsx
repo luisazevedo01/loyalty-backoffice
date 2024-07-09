@@ -25,24 +25,24 @@ import { cn } from '@/lib/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 const profileFormSchema = z.object({
-  username: z
+  name: z
     .string()
     .min(2, {
-      message: 'Username must be at least 2 characters.',
+      message: 'Name must be at least 2 characters.',
     })
     .max(30, {
-      message: 'Username must not be longer than 30 characters.',
+      message: 'Name must not be longer than 30 characters.',
     }),
   email: z
     .string({
       required_error: 'Please select an email to display.',
     })
     .email(),
-  bio: z.string().max(160).min(4),
-  urls: z
+  //bio: z.string().max(160).min(4),
+  contacts: z
     .array(
       z.object({
-        value: z.string().url({ message: 'Please enter a valid URL.' }),
+        value: z.string(),
       })
     )
     .optional(),
@@ -52,10 +52,9 @@ type ProfileFormValues = z.infer<typeof profileFormSchema>
 
 // This can come from your database or API.
 const defaultValues: Partial<ProfileFormValues> = {
-  bio: 'I own a computer.',
-  urls: [
-    { value: 'https://shadcn.com' },
-    { value: 'http://twitter.com/shadcn' },
+  contacts: [
+    { value: 'Carlos Silva' },
+    { value: 'Fábio Henriques' },
   ],
 }
 
@@ -67,7 +66,7 @@ export default function ProfileForm() {
   })
 
   const { fields, append } = useFieldArray({
-    name: 'urls',
+    name: 'contacts',
     control: form.control,
   })
 
@@ -87,12 +86,12 @@ export default function ProfileForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
         <FormField
           control={form.control}
-          name='username'
+          name='name'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder='shadcn' {...field} />
+                <Input placeholder='Please fill with your new name...' {...field} />
               </FormControl>
               <FormDescription>
                 This is your public display name. It can be your real name or a
@@ -128,7 +127,7 @@ export default function ProfileForm() {
             </FormItem>
           )}
         />
-        <FormField
+{/*         <FormField
           control={form.control}
           name='bio'
           render={({ field }) => (
@@ -148,20 +147,20 @@ export default function ProfileForm() {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
         <div>
           {fields.map((field, index) => (
             <FormField
               control={form.control}
               key={field.id}
-              name={`urls.${index}.value`}
+              name={`contacts.${index}.value`}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className={cn(index !== 0 && 'sr-only')}>
-                    URLs
+                    Contacts
                   </FormLabel>
                   <FormDescription className={cn(index !== 0 && 'sr-only')}>
-                    Add links to your website, blog, or social media profiles.
+                    Add your contacts here
                   </FormDescription>
                   <FormControl>
                     <Input {...field} />
@@ -178,7 +177,7 @@ export default function ProfileForm() {
             className='mt-2'
             onClick={() => append({ value: '' })}
           >
-            Add URL
+            Add Contact
           </Button>
         </div>
         <Button type='submit'>Update profile</Button>
