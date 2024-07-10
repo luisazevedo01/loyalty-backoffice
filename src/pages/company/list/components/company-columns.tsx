@@ -8,7 +8,7 @@ import { DataTableRowActions } from './data-table-row-actions'
 import { types } from '../data/data'
 import { Company } from '../data/schema'
 
-export const columns: ColumnDef<Company>[] = [
+export const companyColumns: ColumnDef<Company>[] = [
   /*   {
     id: 'select',
     header: ({ table }) => (

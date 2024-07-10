@@ -52,7 +52,7 @@ export const sidelinks: SideLink[] = [
     icon: <IconFileEuro size={18} />,
   },
   {
-    title: 'Company',
+    title: 'Companies',
     label: '',
     href: '/app/company',
     icon: <IconBuildingWarehouse size={18} />,

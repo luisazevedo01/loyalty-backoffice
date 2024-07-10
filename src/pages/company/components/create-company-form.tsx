@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useFieldArray, useForm } from 'react-hook-form'
 import { Button } from '@/components/custom/button'
 import {
@@ -60,6 +60,7 @@ type CompanyFormValues = z.infer<typeof companyFormSchema>
 // This can come from your database or API.
 
 export default function CreateCompanyForm() {
+  const navigate = useNavigate()
   const form = useForm<CompanyFormValues>({
     resolver: zodResolver(companyFormSchema),
     mode: 'onChange',
@@ -218,7 +219,9 @@ export default function CreateCompanyForm() {
             </FormItem>
           )}
         />
-        <Button type='submit'>Add company</Button>
+        <Button type='submit' onClick={() => navigate('/app/company')}>
+          Add company
+        </Button>
       </form>
     </Form>
   )

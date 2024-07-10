@@ -5,7 +5,6 @@ import { Button } from '@/components/custom/button'
 import { Input } from '@/components/ui/input'
 import { DataTableViewOptions } from './data-table-view-options'
 
-
 import { DataTableFacetedFilter } from './data-table-faceted-filter'
 import { types } from '../data/data'
 
@@ -37,7 +36,7 @@ export function DataTableToolbar<TData>({
               options={types}
             />
           )}
-{/*           {table.getColumn('employees') && (
+          {/*           {table.getColumn('employees') && (
             <DataTableFacetedFilter
               column={table.getColumn('employees')}
               title='Employees'

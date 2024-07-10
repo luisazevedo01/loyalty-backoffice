@@ -28,9 +28,9 @@ export default function Promotions() {
           <h1 className='text-2xl font-bold tracking-tight md:text-3xl'>
             Promotions
           </h1>
-          <div className='flex items-center space-x-2'>
+          {/*           <div className='flex items-center space-x-2'>
             <Button className='flex gap-1'>Next</Button>
-          </div>
+          </div> */}
         </div>
         <Tabs
           orientation='vertical'
@@ -40,9 +40,9 @@ export default function Promotions() {
           <div className='w-full overflow-x-scroll pb-2'>
             <TabsList>
               <TabsTrigger value='overview'>Overview</TabsTrigger>
-              <TabsTrigger value='analytics'>Analytics</TabsTrigger>
-              <TabsTrigger value='reports'>Reports</TabsTrigger>
-              <TabsTrigger value='notifications'>Notifications</TabsTrigger>
+              <TabsTrigger value='analytics'>Vouchers</TabsTrigger>
+              <TabsTrigger value='reports'>Packs</TabsTrigger>
+              <TabsTrigger value='notifications'>Cashback</TabsTrigger>
             </TabsList>
           </div>
           <TabsContent value='overview' className='space-y-4'>
@@ -125,40 +125,56 @@ export default function Promotions() {
             <div className='grid grid-cols-1 gap-4 lg:grid-cols-7'>
               <Card className='col-span-1 lg:col-span-4'>
                 <CardHeader>
-                  <CardTitle>Available vouchers</CardTitle>
+                  <CardTitle>Vouchers</CardTitle>
+                  <CardDescription>
+                    You can find the available vouchers below...
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className='pl-2'>
                   <ul className='no-scrollbar grid gap-4 overflow-y-scroll pb-16 pt-4 md:grid-cols-1 lg:grid-cols-2'>
                     <li
-                      key="1"
+                      key='1'
                       className='rounded-lg border p-4 hover:shadow-md'
                     >
                       <div className='mb-8 flex items-center justify-between'>
                         <div>
-                          <h2 className='mb-1 font-semibold'>Aquisition Voucher</h2>
-                          <p className='line-clamp-2 text-gray-500'>The Aquisition Voucher will give you 1 after you complete 10</p>
+                          <h2 className='mb-1 font-semibold'>
+                            Aquisition Voucher
+                          </h2>
+                          <p className='line-clamp-2 text-gray-500'>
+                            The Aquisition Voucher will give you 1 after you
+                            complete 10
+                          </p>
                         </div>
                       </div>
                     </li>
                     <li
-                      key="2"
+                      key='2'
                       className='rounded-lg border p-4 hover:shadow-md'
                     >
                       <div className='mb-8 flex items-center justify-between'>
                         <div>
-                          <h2 className='mb-1 font-semibold'>Two in One Voucher</h2>
-                          <p className='line-clamp-2 text-gray-500'>This voucher allows you to buy 1 and take 2</p>
+                          <h2 className='mb-1 font-semibold'>
+                            Two in One Voucher
+                          </h2>
+                          <p className='line-clamp-2 text-gray-500'>
+                            This voucher allows you to buy 1 and take 2
+                          </p>
                         </div>
                       </div>
                     </li>
                     <li
-                      key="2"
+                      key='2'
                       className='rounded-lg border p-4 hover:shadow-md'
                     >
                       <div className='mb-8 flex items-center justify-between'>
                         <div>
-                          <h2 className='mb-1 font-semibold'>Example Voucher</h2>
-                          <p className='line-clamp-2 text-gray-500'>This is just an example on a possible voucher</p>
+                          <h2 className='mb-1 font-semibold'>
+                            Example Voucher
+                          </h2>
+                          <p className='line-clamp-2 text-gray-500'>
+                            This is just an example on a possible voucher
+                          </p>
                         </div>
                       </div>
                     </li>

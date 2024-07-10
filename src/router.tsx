@@ -74,6 +74,21 @@ const router = createBrowserRouter([
         lazy: async () => ({
           Component: (await import('@/pages/company')).default,
         }),
+        errorElement: <GeneralError />,
+        children: [
+          {
+            index: true,
+            lazy: async () => ({
+              Component: (await import('./pages/company/list')).default,
+            }),
+          },
+          {
+            path: 'create',
+            lazy: async () => ({
+              Component: (await import('./pages/company/create')).default,
+            }),
+          },
+        ],
       },
       {
         path: 'employees',

@@ -7,18 +7,17 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuShortcut,
-
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { companySchema } from '../data/schema'
 
-interface DataTableRowActionsProps<TData> {
-  row: Row<TData>
+interface DataTableRowActionsProps<TCompanyData> {
+  row: Row<TCompanyData>
 }
 
-export function DataTableRowActions<TData>({
+export function DataTableRowActions<TCompanyData>({
   row,
-}: DataTableRowActionsProps<TData>) {
+}: DataTableRowActionsProps<TCompanyData>) {
   const company = companySchema.parse(row.original)
 
   return (
@@ -36,7 +35,7 @@ export function DataTableRowActions<TData>({
         <DropdownMenuItem>Edit</DropdownMenuItem>
         <DropdownMenuItem>Make a copy</DropdownMenuItem>
         <DropdownMenuItem>Favorite</DropdownMenuItem>
-{/*         <DropdownMenuSeparator />
+        {/*         <DropdownMenuSeparator />
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>Companies</DropdownMenuSubTrigger>
           <DropdownMenuSubContent>
