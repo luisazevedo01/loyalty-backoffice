@@ -3,6 +3,7 @@ import { SignUpForm } from './components/sign-up-form'
 import { Link } from 'react-router-dom'
 
 export default function SignUp() {
+  
   return (
     <>
       <div className='container grid h-svh flex-col items-center justify-center bg-primary-foreground lg:max-w-none lg:px-0'>
@@ -20,7 +21,7 @@ export default function SignUp() {
             >
               <path d='M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3' />
             </svg>
-            <h1 className='text-xl font-medium'>Shadcn Admin</h1>
+            <h1 className='text-xl font-medium'>Sign Up</h1>
           </div>
           <Card className='p-6'>
             <div className='mb-2 flex flex-col space-y-2 text-left'>
@@ -29,25 +30,25 @@ export default function SignUp() {
               </h1>
               <p className='text-sm text-muted-foreground'>
                 Enter your email and password to create an account. <br />
-                Already have an account?{' '}
+                Already have an account? {' '}
                 <Link
-                  to='/sign-in'
+                  to='/'
                   className='underline underline-offset-4 hover:text-primary'
                 >
-                  Sign In
+                  Sign In 
                 </Link>
               </p>
             </div>
             <SignUpForm />
             <p className='mt-4 px-8 text-center text-sm text-muted-foreground'>
-              By creating an account, you agree to our{' '}
+              By creating an account, you agree to our {' '}
               <a
                 href='/terms'
                 className='underline underline-offset-4 hover:text-primary'
               >
-                Terms of Service
-              </a>{' '}
-              and{' '}
+                Terms of Service {' '}
+              </a>
+              and {' '}
               <a
                 href='/privacy'
                 className='underline underline-offset-4 hover:text-primary'

@@ -20,7 +20,7 @@ import ThemeSwitch from '@/components/theme-switch'
 import { UserNav } from '@/components/user-nav'
 import { reviews } from './data'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
-import { getNameInitials } from '@/helpers/getNameInitials'
+import { getInitials } from '@/utils/get-initials'
 
 export default function Reviews() {
   const [sort, setSort] = useState('ascending')
@@ -119,7 +119,7 @@ export default function Reviews() {
                   <Avatar className='m-auto h-8 w-8'>
                     <AvatarImage src='/avatars/01.png' alt='@shadcn' />
                     <AvatarFallback>
-                      {getNameInitials(review.by)}
+                      {getInitials(review.by)}
                     </AvatarFallback>
                   </Avatar>
                 </div>

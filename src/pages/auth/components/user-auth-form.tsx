@@ -14,15 +14,17 @@ import {
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/custom/button'
 import { PasswordInput } from '@/components/custom/password-input'
-import { cn } from '@/lib/utils'
+import { cn } from '@/utils/classes'
+import HttpRequest from '@/helpers/HttpRequest'
 
 interface UserAuthFormProps extends HTMLAttributes<HTMLDivElement> {}
 
 const formSchema = z.object({
-  email: z
+  /*   email: z
     .string()
     .min(1, { message: 'Please enter your email' })
-    .email({ message: 'Invalid email address' }),
+    .email({ message: 'Invalid email address' }), */
+  username: z.string(),
   password: z
     .string()
     .min(1, {
@@ -40,7 +42,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: '',
+      username: '',
       password: '',
     },
   })
@@ -48,6 +50,18 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   function onSubmit(data: z.infer<typeof formSchema>) {
     setIsLoading(true)
     console.log(data)
+
+    const post = async () => {
+      const res: any = await HttpRequest.POST('/auth/login', {
+        ...data,
+      })
+
+      console.log(res)
+      HttpRequest.setAccessToken(res.accessToken)
+      HttpRequest.setAuthorization(res.accessToken)
+      navigate('/app')
+    }
+    post()
 
     setTimeout(() => {
       setIsLoading(false)
@@ -58,15 +72,15 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     <div className={cn('grid gap-6', className)} {...props}>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className='grid gap-2'>
+          <div className='grid gap-5'>
             <FormField
               control={form.control}
-              name='email'
+              name='username'
               render={({ field }) => (
                 <FormItem className='space-y-1'>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>Username</FormLabel>
                   <FormControl>
-                    <Input placeholder='name@example.com' {...field} />
+                    <Input placeholder='username' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -93,11 +107,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                 </FormItem>
               )}
             />
-            <Button
-              className='mt-2'
-              loading={isLoading}
-              onClick={() => navigate('/app')}
-            >
+            <Button className='mt-2' loading={isLoading}>
               Login
             </Button>
 

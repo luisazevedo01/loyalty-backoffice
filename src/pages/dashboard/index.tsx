@@ -13,8 +13,15 @@ import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
 import { RecentSales } from './components/recent-sales'
 import { Overview } from './components/overview'
 import { IconDownload } from '@tabler/icons-react'
+import HttpRequest from '@/helpers/HttpRequest'
 
 export default function Dashboard() {
+  const fetchCompanies = async() => {
+    const res = await HttpRequest.GET('/company')
+    console.log(res);
+  }
+
+  
   return (
     <Layout>
       {/* ===== Top Heading ===== */}
@@ -32,7 +39,7 @@ export default function Dashboard() {
             Dashboard
           </h1>
           <div className='flex items-center space-x-2'>
-            <Button className='flex gap-1'>
+            <Button className='flex gap-1' onClick={fetchCompanies}>
               Extract
               <IconDownload size={18} />
             </Button>

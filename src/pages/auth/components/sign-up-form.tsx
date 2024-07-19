@@ -14,12 +14,15 @@ import {
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/custom/button'
 import { PasswordInput } from '@/components/custom/password-input'
-import { cn } from '@/lib/utils'
+import { cn } from "@/utils/classes"
+import HttpRequest from '@/helpers/HttpRequest'
+import { useNavigate } from 'react-router-dom'
 
 interface SignUpFormProps extends HTMLAttributes<HTMLDivElement> {}
 
 const formSchema = z
   .object({
+    username: z.string(),
     email: z
       .string()
       .min(1, { message: 'Please enter your email' })
@@ -41,10 +44,12 @@ const formSchema = z
 
 export function SignUpForm({ className, ...props }: SignUpFormProps) {
   const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      username: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -53,7 +58,26 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     setIsLoading(true)
-    console.log(data)
+
+    const submit = async () => {
+      try {
+        const res = await HttpRequest.POST('/auth/register', {
+          username: data.username,
+          email: data.email,
+          password: data.password,
+          confirmPassword: data.confirmPassword,
+          role: "client"
+        });
+
+        navigate('/app')
+      } catch (err) {
+
+        console.log(err);
+      }
+      
+    }
+
+    submit();
 
     setTimeout(() => {
       setIsLoading(false)
@@ -65,6 +89,19 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className='grid gap-2'>
+            <FormField
+              control={form.control}
+              name='username'
+              render={({ field }) => (
+                <FormItem className='space-y-1'>
+                  <FormLabel>Username</FormLabel>
+                  <FormControl>
+                    <Input placeholder='username' {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name='email'
@@ -108,7 +145,7 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
               Create Account
             </Button>
 
-            <div className='relative my-2'>
+           {/*  <div className='relative my-2'>
               <div className='absolute inset-0 flex items-center'>
                 <span className='w-full border-t' />
               </div>
@@ -138,7 +175,7 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
               >
                 Facebook
               </Button>
-            </div>
+            </div> */}
           </div>
         </form>
       </Form>

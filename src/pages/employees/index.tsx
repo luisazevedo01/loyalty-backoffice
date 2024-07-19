@@ -19,7 +19,7 @@ import { UserNav } from '@/components/user-nav'
 import { Button } from '@/components/custom/button'
 import { employees } from './data'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
-import { getNameInitials } from '@/helpers/getNameInitials'
+import { getInitials } from '@/utils/get-initials'
 
 
 const appText = new Map<string, string>([
@@ -118,7 +118,7 @@ export default function Employees() {
                   <Avatar className='m-auto h-8 w-8'>
                     <AvatarImage src='/avatars/01.png' alt='@shadcn' />
                     <AvatarFallback>
-                      {getNameInitials(employee.name)}
+                      {getInitials(employee.name)}
                     </AvatarFallback>
                   </Avatar>
                 </div>
