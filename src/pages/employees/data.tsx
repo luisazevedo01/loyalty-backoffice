@@ -1,5 +1,6 @@
 export const employees = [
   {
+    uuid: '27c41bc3-521a-42d9-a1e4-0ecb6134998e',
     name: 'Pedro António',
     location: 'Portugal',
     company: 'Caseiro',
@@ -7,6 +8,7 @@ export const employees = [
     active: true,
   },
   {
+    uuid: 'a677f8b8-a72a-4771-831e-134f5b75c042',
     name: 'Manuel Silveira',
     location: 'Portugal',
     company: 'Caseiro',
@@ -14,6 +16,7 @@ export const employees = [
     active: false,
   },
   {
+    uuid: 'cac1b136-a44f-45d4-9457-140a79e4f3de',
     name: 'Carlos Freitas',
     location: 'Portugal',
     company: 'Caseiro',
@@ -21,6 +24,7 @@ export const employees = [
     active: true,
   },
   {
+    uuid: 'c13bad80-29a7-44fa-971c-2b34efc31633',
     name: 'João Pedro',
     location: 'Portugal',
     company: 'Caseiro',
@@ -28,6 +32,7 @@ export const employees = [
     active: true,
   },
   {
+    uuid: '75c8f6ca-3ac9-49f1-9f9e-192e1876174a',
     name: 'António Brasil',
     location: 'Portugal',
     company: 'Caseiro',
@@ -35,6 +40,7 @@ export const employees = [
     active: true,
   },
   {
+    uuid: '1d34eacb-db26-47b8-b746-affc7116b8b2',
     name: 'Carlos Pereira',
     location: 'Portugal',
     company: 'Caseiro',

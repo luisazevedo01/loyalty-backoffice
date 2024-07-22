@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   IconAdjustmentsHorizontal,
   IconSortAscendingLetters,
@@ -21,7 +21,6 @@ import { employees } from './data'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { getInitials } from '@/utils/get-initials'
 
-
 const appText = new Map<string, string>([
   ['employee', 'Employee'],
   ['manager', 'Manager'],
@@ -32,14 +31,49 @@ export default function Employees() {
   const [sort, setSort] = useState('ascending')
   const [userType, setUserType] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
+  const [displayEmployees, setDisplayEmployees] = useState<typeof employees>([])
 
-  const filteredEmployees = employees
-    .sort((a, b) =>
-      sort === 'ascending'
-        ? a.name.localeCompare(b.name)
-        : b.name.localeCompare(a.name)
+  /*   const sortedEmployees = useMemo(
+    () =>
+      employees
+        .sort((a, b) =>
+          sort === 'ascending'
+            ? a.name.localeCompare(b.name)
+            : b.name.localeCompare(a.name)
+        )
+        .filter((app) =>
+          app.name.toLowerCase().includes(searchTerm.toLowerCase())
+        ),
+    [employees]
+  ) */
+
+  const getEmployees = async () => {
+    setTimeout(() => {
+      const res = employees.sort((a, b) =>
+        sort === 'ascending'
+          ? a.name.localeCompare(b.name)
+          : b.name.localeCompare(a.name)
+      )
+      setDisplayEmployees(res)
+    }, 1000)
+  }
+
+  const removeEmployee = (id: string) => {
+    const newEmployees = displayEmployees.filter((emp) => id !== emp.uuid)
+    return setDisplayEmployees(newEmployees)
+  }
+
+  useEffect(() => {
+    getEmployees()
+  }, [])
+
+  useEffect(() => {
+    const filtered = employees.filter((emp) =>
+      emp.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
-    .filter((app) => app.name.toLowerCase().includes(searchTerm.toLowerCase()))
+
+    setDisplayEmployees(filtered)
+  }, [searchTerm])
 
   return (
     <Layout fadedBelow fixedHeight>
@@ -106,10 +140,10 @@ export default function Employees() {
         </div>
         <Separator className='shadow' />
         <ul className='no-scrollbar grid gap-4 overflow-y-scroll pb-16 pt-4 md:grid-cols-2 lg:grid-cols-3'>
-          {filteredEmployees.map((employee) => (
+          {displayEmployees.map((employee) => (
             <li
               key={employee.name}
-              className='rounded-lg border p-4 hover:shadow-md'
+              className='rounded-lg border bg-card p-4 hover:shadow-md'
             >
               <div className='mb-8 flex items-center justify-between'>
                 <div
@@ -128,6 +162,7 @@ export default function Employees() {
                   className={
                     'border border-red-300 bg-red-50 hover:bg-red-100 dark:border-red-700 dark:bg-red-950 dark:hover:bg-red-900'
                   }
+                  onClick={() => removeEmployee(employee.uuid)}
                 >
                   Remove
                 </Button>

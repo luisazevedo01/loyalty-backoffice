@@ -110,7 +110,7 @@ export default function Reviews() {
           {filteredReviews.map((review) => (
             <li
               key={review.by}
-              className='rounded-lg border p-4 hover:shadow-md'
+              className='rounded-lg border bg-card p-4 hover:shadow-md'
             >
               <div className='mb-8 flex items-center justify-between'>
                 <div

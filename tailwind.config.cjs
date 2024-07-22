@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
+  lightMode: ["class"],
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
@@ -73,5 +74,26 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    function ({ addVariant }) {
+      /**
+       * If you have a .light class
+       */
+      addVariant('light', '.light &')
+
+      /**
+       * If you only have .dark to work with, simply swap out
+       * `html` in the example below with the parent tag where
+       * you are applying the .dark class
+       
+      addVariant('light', 'html:not(.dark) &')
+
+
+       * Uses system default preference.
+
+       addVariant('light', '@media (prefers-color-scheme: light)')
+       */
+    },
+  ],
 }
