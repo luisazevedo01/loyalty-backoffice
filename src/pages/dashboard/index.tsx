@@ -13,7 +13,7 @@ import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
 import { RecentSales } from './components/recent-sales'
 import { Overview } from './components/overview'
 import { IconDownload } from '@tabler/icons-react'
-import HttpRequest from '@/helpers/HttpRequest'
+import HttpRequest from '@/helpers/http-request'
 
 export default function Dashboard() {
   const fetchCompanies = async() => {

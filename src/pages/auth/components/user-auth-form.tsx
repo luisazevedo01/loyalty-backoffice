@@ -15,7 +15,8 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/custom/button'
 import { PasswordInput } from '@/components/custom/password-input'
 import { cn } from '@/utils/classes'
-import HttpRequest from '@/helpers/HttpRequest'
+import HttpRequest from '@/helpers/http-request'
+import { useAuth } from '@/hooks/use-auth'
 
 interface UserAuthFormProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -36,6 +37,7 @@ const formSchema = z.object({
 })
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+  const { onLogin } = useAuth()
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
 
@@ -47,25 +49,17 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     },
   })
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
+  async function onSubmit(data: z.infer<typeof formSchema>) {
     setIsLoading(true)
-    console.log(data)
 
-    const post = async () => {
-      const res: any = await HttpRequest.POST('/auth/login', {
-        ...data,
-      })
-
-      console.log(res)
-      HttpRequest.setAccessToken(res.accessToken)
-      HttpRequest.setAuthorization(res.accessToken)
+    try {
+      await onLogin(data)
       navigate('/app')
-    }
-    post()
-
-    setTimeout(() => {
+    } catch (err) {
+      console.log('ERR: ', err)
+    } finally {
       setIsLoading(false)
-    }, 3000)
+    }
   }
 
   return (

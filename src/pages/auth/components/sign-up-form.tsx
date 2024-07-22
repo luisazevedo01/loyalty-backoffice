@@ -15,7 +15,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/custom/button'
 import { PasswordInput } from '@/components/custom/password-input'
 import { cn } from "@/utils/classes"
-import HttpRequest from '@/helpers/HttpRequest'
+import HttpRequest from '@/helpers/http-request'
 import { useNavigate } from 'react-router-dom'
 
 interface SignUpFormProps extends HTMLAttributes<HTMLDivElement> {}
