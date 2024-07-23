@@ -1,7 +1,10 @@
+import { useTranslation } from 'react-i18next'
 import { UserAuthForm } from './components/user-auth-form'
 import ViteLogo from '@/assets/vite.svg'
 
 export default function SignIn() {
+  const {t} = useTranslation();
+
   return (
     <>
       <div className='container relative grid h-svh flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0'>
@@ -63,7 +66,7 @@ export default function SignIn() {
                 href='/privacy'
                 className='underline underline-offset-4 hover:text-primary'
               >
-                Privacy Policy
+                {t('lbl_privacy_policy')}
               </a>
               .
             </p>

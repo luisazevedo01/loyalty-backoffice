@@ -16,12 +16,11 @@ import { IconDownload } from '@tabler/icons-react'
 import HttpRequest from '@/helpers/http-request'
 
 export default function Dashboard() {
-  const fetchCompanies = async() => {
+  const fetchCompanies = async () => {
     const res = await HttpRequest.GET('/company')
-    console.log(res);
+    console.log(res)
   }
 
-  
   return (
     <Layout>
       {/* ===== Top Heading ===== */}
@@ -38,12 +37,12 @@ export default function Dashboard() {
           <h1 className='text-2xl font-bold tracking-tight md:text-3xl'>
             Dashboard
           </h1>
-          <div className='flex items-center space-x-2'>
+{/*           <div className='flex items-center space-x-2'>
             <Button className='flex gap-1' onClick={fetchCompanies}>
               Extract
               <IconDownload size={18} />
             </Button>
-          </div>
+          </div> */}
         </div>
         <Tabs
           orientation='vertical'
@@ -65,9 +64,11 @@ export default function Dashboard() {
                     strokeLinecap='round'
                     strokeLinejoin='round'
                     strokeWidth='2'
-                    className='h-4 w-4 text-muted-foreground'
+                    className='h-4 w-4 text-indigo-400'
                   >
-                    <path d='M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6' />
+                    <path d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2' />
+                    <circle cx='9' cy='7' r='4' />
+                    <path d='M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75' />
                   </svg>
                 </CardHeader>
                 <CardContent>
@@ -90,11 +91,10 @@ export default function Dashboard() {
                     strokeLinecap='round'
                     strokeLinejoin='round'
                     strokeWidth='2'
-                    className='h-4 w-4 text-muted-foreground'
+                    className='h-4 w-4 text-emerald-400'
                   >
-                    <path d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2' />
-                    <circle cx='9' cy='7' r='4' />
-                    <path d='M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75' />
+                    <rect width='20' height='14' x='2' y='5' rx='2' />
+                    <path d='M2 10h20' />
                   </svg>
                 </CardHeader>
                 <CardContent>
@@ -117,10 +117,9 @@ export default function Dashboard() {
                     strokeLinecap='round'
                     strokeLinejoin='round'
                     strokeWidth='2'
-                    className='h-4 w-4 text-muted-foreground'
+                    className='h-4 w-4 text-yellow-400'
                   >
-                    <rect width='20' height='14' x='2' y='5' rx='2' />
-                    <path d='M2 10h20' />
+                    <path d='M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6' />
                   </svg>
                 </CardHeader>
                 <CardContent>
@@ -143,7 +142,7 @@ export default function Dashboard() {
                     strokeLinecap='round'
                     strokeLinejoin='round'
                     strokeWidth='2'
-                    className='h-4 w-4 text-muted-foreground'
+                    className='h-4 w-4 text-red-400'
                   >
                     <path d='M22 12h-4l-3 9L9 3l-3 9H2' />
                   </svg>

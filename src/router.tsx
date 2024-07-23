@@ -103,18 +103,6 @@ const router = createBrowserRouter([
         }),
       },
       {
-        path: 'extra-components',
-        lazy: async () => ({
-          Component: (await import('@/pages/extra-components')).default,
-        }),
-      },
-      {
-        path: 'sign-up',
-        lazy: async () => ({
-          Component: (await import('@/pages/auth/sign-up')).default,
-        }),
-      },
-      {
         path: 'settings',
         lazy: async () => ({
           Component: (await import('./pages/settings')).default,
@@ -161,6 +149,18 @@ const router = createBrowserRouter([
             errorElement: <GeneralError className='h-[50svh]' minimal />,
           },
         ],
+      },
+      {
+        path: 'extra-components',
+        lazy: async () => ({
+          Component: (await import('@/pages/extra-components')).default,
+        }),
+      },
+      {
+        path: 'sign-up',
+        lazy: async () => ({
+          Component: (await import('@/pages/auth/sign-up')).default,
+        }),
       },
     ],
   },

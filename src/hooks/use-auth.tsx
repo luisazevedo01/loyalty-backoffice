@@ -8,7 +8,6 @@ import {
 } from 'react'
 
 import HttpRequest from '@/helpers/http-request'
-import { Navigate } from 'react-router-dom'
 
 interface AuthContextType {
   isLoggedIn: boolean
@@ -33,7 +32,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         ...data,
       })
 
-      HttpRequest.setAuthorization(response.accessToken)
+      window.localStorage.setItem('token', response.accessToken);
+      HttpRequest.setAuthorization(response.accessToken);
 
       setIsLoggedIn(true)
     },

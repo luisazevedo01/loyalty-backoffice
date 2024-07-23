@@ -9,8 +9,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import ThemeSwitch from '@/components/theme-switch'
 import { UserNav } from '@/components/user-nav'
 import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
+import { useTranslation } from 'react-i18next'
 
 export default function Promotions() {
+  const { t } = useTranslation()
+
   return (
     <Layout>
       {/* ===== Top Heading ===== */}
@@ -25,7 +28,7 @@ export default function Promotions() {
       <LayoutBody className='space-y-4'>
         <div className='flex items-center justify-between space-y-2'>
           <h1 className='text-2xl font-bold tracking-tight md:text-3xl'>
-            Promotions
+            {t('lbl_promotions')}
           </h1>
           {/*           <div className='flex items-center space-x-2'>
             <Button className='flex gap-1'>Next</Button>
