@@ -63,17 +63,12 @@ const sidebarNavItems = [
     href: '/app/settings/account',
   },
   {
-    title: 'Appearance',
-    icon: <IconPalette size={18} />,
-    href: '/app/settings/appearance',
-  },
-  {
     title: 'Notifications',
     icon: <IconNotification size={18} />,
     href: '/app/settings/notifications',
   },
   {
-    title: 'Display',
+    title: 'Permissions',
     icon: <IconBrowserCheck size={18} />,
     href: '/app/settings/display',
   },

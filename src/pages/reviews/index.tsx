@@ -21,6 +21,8 @@ import { UserNav } from '@/components/user-nav'
 import { reviews } from './data'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { getInitials } from '@/utils/get-initials'
+import { Button } from '@/components/custom/button'
+import { CheckCircledIcon, CrossCircledIcon } from '@radix-ui/react-icons'
 
 export default function Reviews() {
   const [sort, setSort] = useState('ascending')
@@ -32,10 +34,10 @@ export default function Reviews() {
       sort === 'ascending' ? a.by.localeCompare(b.by) : b.by.localeCompare(a.by)
     )
     .filter((review) =>
-      reviewType === 'connected'
-        ? review.connected
-        : reviewType === 'notConnected'
-          ? !review.connected
+      reviewType === 'complied'
+        ? review.complied
+        : reviewType === 'notComplied'
+          ? !review.complied
           : true
     )
     .filter((review) =>
@@ -118,12 +120,10 @@ export default function Reviews() {
                 >
                   <Avatar className='m-auto h-8 w-8'>
                     <AvatarImage src='/avatars/01.png' alt='@shadcn' />
-                    <AvatarFallback>
-                      {getInitials(review.by)}
-                    </AvatarFallback>
+                    <AvatarFallback>{getInitials(review.by)}</AvatarFallback>
                   </Avatar>
                 </div>
-                <div className='flex'>
+                {/*                 <div className='flex'>
                   {Array.from({ length: 5 }).map((_, idx) => {
                     if (review.stars > idx) {
                       return <IconStarFilled color='#f0c800' size={16} />
@@ -132,14 +132,16 @@ export default function Reviews() {
                       return <IconStar color='#f0c800' size={16} />
                     }
                   })}
-                </div>
-                {/*                 <Button
+                </div> */}
+
+                <Button
                   variant='outline'
                   size='sm'
-                  className={`${review.connected ? 'border border-blue-300 bg-blue-50 hover:bg-blue-100 dark:border-blue-700 dark:bg-blue-950 dark:hover:bg-blue-900' : ''}`}
+                  className={`flex gap-1 border ${review.complied ? 'border-green-300 bg-green-50 hover:bg-green-100 dark:border-green-700 dark:bg-green-950 dark:hover:bg-green-900' : 'border-red-300 bg-red-50 hover:bg-red-100 dark:border-red-700 dark:bg-red-950 dark:hover:bg-red-900'}`}
                 >
-                  {review.connected ? 'Connected' : 'Connect'}
-                </Button> */}
+                  {review.complied ? 'Complied' : 'Not Complied'}
+                  {review.complied ? <CheckCircledIcon/> : <CrossCircledIcon/>}
+                </Button>
               </div>
               <div>
                 <h2 className='mb-1 font-semibold'>{review.by}</h2>

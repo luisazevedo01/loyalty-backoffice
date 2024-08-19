@@ -20,6 +20,7 @@ import { Button } from '@/components/custom/button'
 import { employees } from './data'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { getInitials } from '@/utils/get-initials'
+import { Pencil2Icon } from '@radix-ui/react-icons'
 
 const appText = new Map<string, string>([
   ['employee', 'Employee'],
@@ -167,9 +168,14 @@ export default function Employees() {
                   Remove
                 </Button>
               </div>
-              <div>
-                <h2 className='mb-1 font-semibold'>{employee.name}</h2>
-                <p className='line-clamp-2 text-gray-500'>{employee.role}</p>
+              <div className='flex items-end justify-between'>
+                <div>
+                  <h2 className='mb-1 font-semibold'>{employee.name}</h2>
+                  <p className='line-clamp-2 text-gray-500'>{employee.role}</p>
+                </div>
+                <span>
+                  <Pencil2Icon width='24px' height='24px' className='text-gray-500 hover:text-gray-900' />
+                </span>
               </div>
             </li>
           ))}
