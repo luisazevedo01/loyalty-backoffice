@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   IconAdjustmentsHorizontal,
   IconSortAscendingLetters,
@@ -23,8 +23,11 @@ import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { getInitials } from '@/utils/get-initials'
 import { Button } from '@/components/custom/button'
 import { CheckCircledIcon, CrossCircledIcon } from '@radix-ui/react-icons'
+import useReviews from './hooks/use-reviews'
 
 export default function Reviews() {
+  const fromReviews = useReviews();
+
   const [sort, setSort] = useState('ascending')
   const [reviewType, setReviewType] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
@@ -43,6 +46,10 @@ export default function Reviews() {
     .filter((review) =>
       review.by.toLowerCase().includes(searchTerm.toLowerCase())
     )
+
+    useEffect(() => {
+      fromReviews.getReviews();
+    }, [])
 
   return (
     <Layout fadedBelow fixedHeight>

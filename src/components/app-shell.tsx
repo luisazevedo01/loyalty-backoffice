@@ -6,11 +6,11 @@ import { useAuth } from '@/hooks/use-auth'
 export default function AppShell() {
   const [isCollapsed, setIsCollapsed] = useIsCollapsed()
   const auth = useAuth()
-  /* 
+  
   if (!auth.isLoggedIn) {
     return <Navigate to='/' replace />
   }
- */
+
   return (
     <div className='relative h-full overflow-hidden bg-background'>
       <Sidebar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />

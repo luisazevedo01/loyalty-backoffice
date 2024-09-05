@@ -21,57 +21,25 @@ import {
 } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 import { toast } from '@/components/ui/use-toast'
-import { cn } from "@/utils/classes"
+import { cn } from '@/utils/classes'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-const companyFormSchema = z.object({
-  name: z
-    .string()
-    .min(2, {
-      message: 'The name must be at least 2 characters.',
-    })
-    .max(30, {
-      message: 'Username must not be longer than 30 characters.',
-    }),
-  category: z.string({
-    required_error: 'Please select a category.',
-  }),
-  identificationNumber: z.string().min(9).max(14).optional(),
-  additionalInfo: z.string().max(160).min(4).optional(),
-  contacts: z
-    .array(
-      z.object({
-        value: z.string().min(9, {
-          message: 'Contact must be at least 9 characters.',
-        }),
-      })
-    )
-    .optional(),
-  location: z
-    .string()
-    .min(3, {
-      message: 'The location must be at least 3 characters.',
-    })
-    .optional(),
-})
+interface CreateCompanyFormProps {
+  data: unknown;
+  createCompany: (data: z.infer<typeof companyFormSchema>) => Promise<void>;
+}
 
 type CompanyFormValues = z.infer<typeof companyFormSchema>
 
-// This can come from your database or API.
-
-export default function CreateCompanyForm() {
+export default function CreateCompanyForm(props: CreateCompanyFormProps) {
   const navigate = useNavigate()
   const form = useForm<CompanyFormValues>({
     resolver: zodResolver(companyFormSchema),
     mode: 'onChange',
   })
 
-  const { fields, append } = useFieldArray({
-    name: 'contacts',
-    control: form.control,
-  })
-
   function onSubmit(data: CompanyFormValues) {
+    props.createCompany(data);
     toast({
       title: 'You submitted the following values:',
       description: (
@@ -107,6 +75,27 @@ export default function CreateCompanyForm() {
         />
         <FormField
           control={form.control}
+          name='description'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Description</FormLabel>
+              <FormControl>
+                <Textarea
+                  placeholder='Your company description, any information that may be important.'
+                  className='resize-none'
+                  rows={10}
+                  {...field}
+                />
+              </FormControl>
+              <FormDescription>
+                Make sure to add any information that may be relevant.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
           name='category'
           render={({ field }) => (
             <FormItem>
@@ -133,22 +122,66 @@ export default function CreateCompanyForm() {
         />
         <FormField
           control={form.control}
-          name='identificationNumber'
+          name='logo'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Identification Nº</FormLabel>
+              <FormLabel>Logo</FormLabel>
               <FormControl>
                 <Input placeholder='' {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name. It can be your real name or a
-                pseudonym. You can only change this once every 30 days.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <div>
+        <FormField
+          control={form.control}
+          name='website'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Website</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder='Please fill with your website link'
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='facebook'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Facebook</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder='Please fill with your facebook profile link'
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='instagram'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Instagram</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder='Please fill with your instagram profile link'
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        {/* <div>
           {fields.map((field, index) => (
             <FormField
               control={form.control}
@@ -179,50 +212,61 @@ export default function CreateCompanyForm() {
           >
             Add Contact
           </Button>
-        </div>
-        <FormField
-          control={form.control}
-          name='location'
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Location</FormLabel>
-              <FormControl>
-                <Input placeholder='' {...field} />
-              </FormControl>
-              <FormDescription>
-                This is your public display name. It can be your real name or a
-                pseudonym. You can only change this once every 30 days.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='additionalInfo'
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Additional Information</FormLabel>
-              <FormControl>
-                <Textarea
-                  placeholder='Additional information that may be important.'
-                  className='resize-none'
-                  rows={10}
-                  {...field}
-                />
-              </FormControl>
-              <FormDescription>
-                You can <span>@mention</span> other users and organizations to
-                link to them.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type='submit' onClick={() => navigate('/app/company')}>
+        </div> */}
+        <Button type='submit' onClick={form.handleSubmit(onSubmit)}>
           Add company
         </Button>
       </form>
     </Form>
   )
 }
+
+export const companyFormSchema = z.object({
+  name: z
+    .string()
+    .min(2, {
+      message: 'The name must be at least 2 characters.',
+    })
+    .max(30, {
+      message: 'The name must not be longer than 30 characters.',
+    }),
+  description: z
+    .string()
+    .min(4, {
+      message: 'The description must be at least 2 characters.',
+    })
+    .max(100, {
+      message: 'Description must not be longer than 100 characters.',
+    }),
+  logo: z.string().optional(),
+  website: z.string().optional(),
+  facebook: z.string({
+    required_error: 'You must add your facebook account.',
+  }),
+  instagram: z.string({
+    required_error: 'You must add your instagram account.',
+  }),
+  category: z.string({
+    required_error: 'Please select a category.',
+  }),
+  // identificationNumber: z.string().min(9).max(14).optional(),
+  // additionalInfo: z.string().max(160).min(4).optional(),
+  // website: z.string({
+  //   required_error: "Please fill the website."
+  // }),
+  // contacts: z
+  //   .array(
+  //     z.object({
+  //       value: z.string().min(9, {
+  //         message: 'Contact must be at least 9 characters.',
+  //       }),
+  //     })
+  //   )
+  //   .optional(),
+  // location: z
+  //   .string()
+  //   .min(3, {
+  //     message: 'The location must be at least 3 characters.',
+  //   })
+  //   .optional(),
+})

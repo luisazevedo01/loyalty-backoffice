@@ -1,4 +1,3 @@
-import { Button } from '@/components/custom/button'
 import {
   Card,
   CardContent,
@@ -12,14 +11,15 @@ import { UserNav } from '@/components/user-nav'
 import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
 import { RecentSales } from './components/recent-sales'
 import { Overview } from './components/overview'
-import { IconDownload } from '@tabler/icons-react'
-import HttpRequest from '@/helpers/http-request'
+import useDashboard from './hooks/use-dashboard'
+import { useEffect } from 'react'
 
 export default function Dashboard() {
-  const fetchCompanies = async () => {
-    const res = await HttpRequest.GET('/company')
-    console.log(res)
-  }
+  const fromDashboard = useDashboard();
+
+  useEffect(() => {
+    fromDashboard.getUser();
+  }, [])
 
   return (
     <Layout>
