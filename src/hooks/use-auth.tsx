@@ -1,3 +1,4 @@
+import AuthManager from '@/helpers/AuthManager'
 import {
   ReactNode,
   createContext,
@@ -6,8 +7,6 @@ import {
   useMemo,
   useState,
 } from 'react'
-
-import HttpRequest from '@/helpers/http-request'
 
 interface AuthContextType {
   isLoggedIn: boolean
@@ -24,26 +23,24 @@ const defaultValue: AuthContextType = {
 const AuthContext = createContext(defaultValue)
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(AuthManager.isLoggedIn)
 
   const onLogin = useCallback(
     async (data: any) => {
-      const response: any = await HttpRequest.POST('/auth/login', {
-        ...data,
-      })
-
-      window.localStorage.setItem('token', response.accessToken);
-      HttpRequest.setAuthorization(response.accessToken);
-
-      setIsLoggedIn(true)
+      try {
+        await AuthManager.login(data)
+        setIsLoggedIn(true)
+      } catch (error) {
+        console.error('Login failed:', error)
+      }
     },
-    [setIsLoggedIn]
+    []
   )
 
   const onLogout = async () => {
     try {
+      AuthManager.logout()
       setIsLoggedIn(false)
-      HttpRequest.setAuthorization('')
     } catch (err) {
       console.log('ERR:', err)
     }

@@ -1,7 +1,6 @@
 import { HTMLAttributes, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { IconBrandFacebook, IconBrandGithub } from '@tabler/icons-react'
 import { z } from 'zod'
 import {
   Form,
@@ -14,9 +13,9 @@ import {
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/custom/button'
 import { PasswordInput } from '@/components/custom/password-input'
-import { cn } from "@/utils/classes"
-import HttpRequest from '@/helpers/http-request'
+import { cn } from '@/utils/classes'
 import { useNavigate } from 'react-router-dom'
+import HttpRequest from '@/helpers/HttpRequest'
 
 interface SignUpFormProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -44,7 +43,7 @@ const formSchema = z
 
 export function SignUpForm({ className, ...props }: SignUpFormProps) {
   const [isLoading, setIsLoading] = useState(false)
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -61,23 +60,21 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
 
     const submit = async () => {
       try {
-        const res = await HttpRequest.POST('/auth/register', {
+        await HttpRequest.POST('/auth/register', {
           username: data.username,
           email: data.email,
           password: data.password,
           confirmPassword: data.confirmPassword,
-          role: "client"
-        });
+          role: 'client',
+        })
 
         navigate('/app')
       } catch (err) {
-
-        console.log(err);
+        console.log(err)
       }
-      
     }
 
-    submit();
+    submit()
 
     setTimeout(() => {
       setIsLoading(false)
@@ -145,7 +142,7 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
               Create Account
             </Button>
 
-           {/*  <div className='relative my-2'>
+            {/*  <div className='relative my-2'>
               <div className='absolute inset-0 flex items-center'>
                 <span className='w-full border-t' />
               </div>

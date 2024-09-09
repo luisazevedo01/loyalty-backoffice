@@ -93,4 +93,4 @@ class HttpRequest {
   }
 }
 
-export default new HttpRequest(baseURL)
+//export default new HttpRequest(baseURL)

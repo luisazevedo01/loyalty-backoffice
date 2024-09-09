@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { DataTableColumnHeader } from './data-table-column-header'
 import { DataTableRowActions } from './data-table-row-actions'
 
-import { types } from '../data/data'
+import { categories } from '../data/data'
 import { Company } from '../data/schema'
 
 export const companyColumns: ColumnDef<Company>[] = [
@@ -90,25 +90,16 @@ export const companyColumns: ColumnDef<Company>[] = [
     },
   },
   {
-    accessorKey: 'type',
+    accessorKey: 'description',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Type' />
+      <DataTableColumnHeader column={column} title='Description' />
     ),
     cell: ({ row }) => {
-      const type = types.find(
-        (type: any) => type.value === row.getValue('type')
-      )
-
-      if (!type) {
-        return null
-      }
-
       return (
         <div className='flex w-[100px] items-center'>
-          {type && <Badge variant='outline'>{type?.label}</Badge>}
-          {/*           <span className='max-w-32 truncate font-medium sm:max-w-72 md:max-w-[31rem]'>
-            {row.getValue('type')}
-          </span> */}
+          <span className='max-w-32 truncate font-medium sm:max-w-72 md:max-w-[31rem]'>
+            {row.getValue('description')}
+          </span>
         </div>
       )
     },
@@ -117,9 +108,33 @@ export const companyColumns: ColumnDef<Company>[] = [
     },
   },
   {
-    accessorKey: 'employees',
+    accessorKey: 'category',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Employees' />
+      <DataTableColumnHeader column={column} title='Category' />
+    ),
+    cell: ({ row }) => {
+      const category = categories.find(
+        (category: any) => category.value === row.getValue('category')
+      )
+
+      if (!category) {
+        return null
+      }
+
+      return (
+        <div className='flex w-[100px] items-center'>
+          {category && <Badge variant='outline'>{category?.label}</Badge>}
+        </div>
+      )
+    },
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id))
+    },
+  },
+  {
+    accessorKey: 'website',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title='Website' />
     ),
     cell: ({ row }) => {
       /*       const employee = employees.find(
@@ -132,9 +147,8 @@ export const companyColumns: ColumnDef<Company>[] = [
 
       return (
         <div className='flex items-center'>
-          {/*{false && <Badge variant='outline'>{employee?.label}</Badge>}*/}
           <span className='max-w-32 truncate font-medium sm:max-w-72 md:max-w-[31rem]'>
-            {row.getValue('employees')}
+            {row.getValue('website')}
           </span>
         </div>
       )

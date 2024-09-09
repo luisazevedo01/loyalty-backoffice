@@ -1,7 +1,7 @@
-import HttpRequest from '@/helpers/http-request'
+import HttpRequest from "@/helpers/HttpRequest";
 
 interface UseListCompanyController {
-  getCompanies: () => Promise<void>;
+  getCompanies: () => Promise<any>;
 }
 
 const useListCompany = (): UseListCompanyController => {
@@ -9,6 +9,7 @@ const useListCompany = (): UseListCompanyController => {
     try {
       const res = await HttpRequest.GET('/company');
       console.log(res, "!!!!!!?!")
+      return res.data;
     } catch (err) {
       console.log(err)
       alert('Error on getCompanies()')

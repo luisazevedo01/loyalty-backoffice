@@ -5,8 +5,8 @@ import { getInitials } from '@/utils/get-initials'
 export function RecentSales() {
   return (
     <div className='space-y-8'>
-      {loyalCustomers.map((customer) => (
-        <div className='flex items-center'>
+      {loyalCustomers.map((customer, idx) => (
+        <div className='flex items-center' key={`recent_sales_${idx}`}>
           <Avatar className='h-9 w-9'>
             <AvatarImage src='/avatars/01.png' alt='Avatar' />
             <AvatarFallback className='light:bg-cyan-100'>{getInitials(customer.name)}</AvatarFallback>

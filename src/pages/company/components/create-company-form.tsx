@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { Link, useNavigate } from 'react-router-dom'
-import { useFieldArray, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { Button } from '@/components/custom/button'
 import {
   Form,
@@ -21,7 +21,6 @@ import {
 } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 import { toast } from '@/components/ui/use-toast'
-import { cn } from '@/utils/classes'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 interface CreateCompanyFormProps {
@@ -107,7 +106,7 @@ export default function CreateCompanyForm(props: CreateCompanyFormProps) {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value='cafe'>Cafe</SelectItem>
+                  <SelectItem value='coffee'>Coffee</SelectItem>
                   <SelectItem value='restaurant'>Restaurant</SelectItem>
                   <SelectItem value='education'>Education</SelectItem>
                 </SelectContent>

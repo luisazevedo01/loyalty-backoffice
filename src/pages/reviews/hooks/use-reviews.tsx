@@ -1,4 +1,4 @@
-import HttpRequest from '@/helpers/http-request'
+import HttpRequest from '@/helpers/HttpRequest'
 
 interface UseReviewsController {
     getReviews: () => Promise<void>;

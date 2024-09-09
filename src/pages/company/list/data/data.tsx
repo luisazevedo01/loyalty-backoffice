@@ -1,14 +1,19 @@
 import { ArrowDownIcon, ArrowRightIcon } from '@radix-ui/react-icons'
 
-export const types = [
+export const categories = [
   {
     label: 'Restaurant',
     value: 'restaurant',
     icon: ArrowDownIcon,
   },
   {
-    label: 'Shop',
-    value: 'shop',
+    label: 'Coffee',
+    value: 'coffee',
+    icon: ArrowDownIcon,
+  },
+  {
+    label: 'Education',
+    value: 'education',
     icon: ArrowRightIcon,
   },
 ]

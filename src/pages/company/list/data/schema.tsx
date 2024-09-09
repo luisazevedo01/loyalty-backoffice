@@ -5,8 +5,9 @@ import { z } from 'zod'
 export const companySchema = z.object({
   id: z.string(),
   name: z.string(),
-  employees: z.string(),
-  type: z.string(),
+  description: z.string(),
+  category: z.string(),
+  website: z.string(),
 })
 
 export type Company = z.infer<typeof companySchema>

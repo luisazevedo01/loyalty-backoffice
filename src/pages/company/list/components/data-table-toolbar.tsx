@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input'
 import { DataTableViewOptions } from './data-table-view-options'
 
 import { DataTableFacetedFilter } from './data-table-faceted-filter'
-import { types } from '../data/data'
+import { categories } from '../data/data'
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
@@ -29,11 +29,11 @@ export function DataTableToolbar<TData>({
           className='h-8 w-[150px] lg:w-[250px]'
         />
         <div className='flex gap-x-2'>
-          {table.getColumn('type') && (
+          {table.getColumn('category') && (
             <DataTableFacetedFilter
-              column={table.getColumn('type')}
-              title='Type'
-              options={types}
+              column={table.getColumn('category')}
+              title='Category'
+              options={categories}
             />
           )}
           {/*           {table.getColumn('employees') && (

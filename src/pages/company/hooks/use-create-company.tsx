@@ -1,12 +1,14 @@
-import HttpRequest from '@/helpers/http-request'
+import HttpRequest from '@/helpers/HttpRequest'
 import { z } from 'zod'
 import { companyFormSchema } from '../components/create-company-form'
+import { useNavigate } from 'react-router-dom'
 
 interface UseCreateCompanyController {
   createCompany: (data: z.infer<typeof companyFormSchema>) => Promise<void>
 }
 
 const useCreateCompany = (): UseCreateCompanyController => {
+  const navigate = useNavigate();
   const createCompany = async (data: z.infer<typeof companyFormSchema>) => {
     try {
       const res = await HttpRequest.POST('/company', {
@@ -19,6 +21,7 @@ const useCreateCompany = (): UseCreateCompanyController => {
         instagram: data.instagram,
       })
       console.log(res, '!!!!!!?!')
+      navigate('/app/company')
     } catch (err) {
       console.log(err)
       alert('Error on createCompany()')
