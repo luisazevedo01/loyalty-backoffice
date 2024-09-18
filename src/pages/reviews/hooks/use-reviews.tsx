@@ -11,7 +11,6 @@ const useReviews = (): UseReviewsController => {
       console.log(res, "!!!!!!?!")
     } catch (err) {
       console.log(err)
-      alert('Error on getReviews()')
     }
   }
   return {

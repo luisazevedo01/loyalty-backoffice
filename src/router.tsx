@@ -88,6 +88,12 @@ const router = createBrowserRouter([
               Component: (await import('./pages/company/create')).default,
             }),
           },
+          {
+            path: 'edit',
+            lazy: async () => ({
+              Component: (await import('./pages/company/edit')).default,
+            }),
+          },
         ],
       },
       {

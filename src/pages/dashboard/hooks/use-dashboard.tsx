@@ -14,6 +14,7 @@ const useDashboard = (): UseDashboardController => {
       alert('Error')
     }
   }
+
   return {
     getUser,
   }

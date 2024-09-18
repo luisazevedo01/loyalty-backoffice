@@ -47,10 +47,6 @@ export default function Reviews() {
       review.by.toLowerCase().includes(searchTerm.toLowerCase())
     )
 
-    useEffect(() => {
-      fromReviews.getReviews();
-    }, [])
-
   return (
     <Layout fadedBelow fixedHeight>
       {/* ===== Top Heading ===== */}

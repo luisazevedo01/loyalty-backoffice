@@ -25,16 +25,27 @@ import {
 
 import { DataTablePagination } from './data-table-pagination'
 import { DataTableToolbar } from './data-table-toolbar'
+import { MutableRefObject } from 'react'
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+type TData = {
+  id: string
+  date: string
+  client: string
+  typeOfLoyalty: string
+  store: string
 }
 
-export function DataTable<TData, TValue>({
+interface DataTableProps<TValue> {
+  columns: ColumnDef<TData, TValue>[]
+  data: TData[]
+  tableRef: MutableRefObject<null>
+}
+
+export function DataTable<TValue>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) {
+  tableRef,
+}: DataTableProps<TValue>) {
   const [rowSelection, setRowSelection] = React.useState({})
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({})
@@ -51,6 +62,10 @@ export function DataTable<TData, TValue>({
       columnVisibility,
       rowSelection,
       columnFilters,
+      pagination: {
+        pageIndex: 0,
+        pageSize: 50
+      }
     },
     enableRowSelection: false,
     onRowSelectionChange: setRowSelection,
@@ -68,7 +83,7 @@ export function DataTable<TData, TValue>({
   return (
     <div className='space-y-4'>
       <DataTableToolbar table={table} />
-      <div className='rounded-md border'>
+      <div className='rounded-md border' ref={tableRef}>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

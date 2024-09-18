@@ -6,8 +6,15 @@ import { columns } from './components/columns'
 import { scans } from './data/scans'
 import { Button } from '@/components/custom/button'
 import { IconDownload } from '@tabler/icons-react'
+import { useReactToPrint } from 'react-to-print'
+import { useRef } from 'react'
 
 export default function History() {
+  const componentRef = useRef(null);
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+
   return (
     <Layout>
       {/* ===== Top Heading ===== */}
@@ -27,7 +34,7 @@ export default function History() {
             </p>
           </div>
           <div className='flex items-center space-x-2'>
-            <Button className='flex gap-1'>
+            <Button className='flex gap-1' onClick={handlePrint}>
               Extract
               <IconDownload size={18} />
             </Button>
@@ -35,7 +42,7 @@ export default function History() {
         </div>
 
         <div className='-mx-4 mt-5 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
-          <DataTable data={scans} columns={columns} />
+          <DataTable tableRef={componentRef} data={scans} columns={columns} />
         </div>
       </LayoutBody>
     </Layout>

@@ -116,7 +116,7 @@ export function AccountForm() {
                     <Button
                       variant={'outline'}
                       className={cn(
-                        'w-[240px] pl-3 text-left font-normal',
+                        'light:bg-white w-[240px] pl-3 text-left font-normal',
                         !field.value && 'text-muted-foreground'
                       )}
                     >
@@ -161,7 +161,7 @@ export function AccountForm() {
                       variant='outline'
                       role='combobox'
                       className={cn(
-                        'w-[200px] justify-between',
+                        'light:bg-white w-[200px] justify-between',
                         !field.value && 'text-muted-foreground'
                       )}
                     >

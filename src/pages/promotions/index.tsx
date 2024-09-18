@@ -10,8 +10,10 @@ import ThemeSwitch from '@/components/theme-switch'
 import { UserNav } from '@/components/user-nav'
 import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
 import { useTranslation } from 'react-i18next'
+import usePromotions from './hooks/use-promotions'
 
 export default function Promotions() {
+  const fromController = usePromotions();
   const { t } = useTranslation()
 
   return (

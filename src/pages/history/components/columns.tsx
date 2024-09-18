@@ -93,7 +93,7 @@ export const columns: ColumnDef<Scan>[] = [
       <DataTableColumnHeader column={column} title='Store' />
     ),
     cell: ({ row }) => {
-/*       const shop = mock_shops.find(
+      /*       const shop = mock_shops.find(
         (shop) => shop.value === row.getValue('shops')
       )
 
@@ -103,7 +103,7 @@ export const columns: ColumnDef<Scan>[] = [
 
       return (
         <div className='flex items-center'>
-  {/*         {shop.icon && (
+          {/*         {shop.icon && (
             <shop.icon className='mr-2 h-4 w-4 text-muted-foreground' />
           )} */}
           <span>{row.getValue('store')}</span>
@@ -120,7 +120,7 @@ export const columns: ColumnDef<Scan>[] = [
       <DataTableColumnHeader column={column} title='Date' />
     ),
     cell: ({ row }) => {
-/*       const shop = mock_shops.find(
+      /*       const shop = mock_shops.find(
         (shop) => shop.value === row.getValue('shops')
       )
 
@@ -130,7 +130,7 @@ export const columns: ColumnDef<Scan>[] = [
 
       return (
         <div className='flex items-center'>
-  {/*         {shop.icon && (
+          {/*         {shop.icon && (
             <shop.icon className='mr-2 h-4 w-4 text-muted-foreground' />
           )} */}
           <span>{row.getValue('date')}</span>

@@ -10,6 +10,9 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { companySchema } from '../data/schema'
+import HttpRequest from '@/helpers/HttpRequest'
+import { useNavigate } from 'react-router-dom'
+import useListCompany from '../../hooks/use-list-company'
 
 interface DataTableRowActionsProps<TCompanyData> {
   row: Row<TCompanyData>
@@ -18,7 +21,10 @@ interface DataTableRowActionsProps<TCompanyData> {
 export function DataTableRowActions<TCompanyData>({
   row,
 }: DataTableRowActionsProps<TCompanyData>) {
+  const navigate = useNavigate()
+  const fromList = useListCompany();
   const company = companySchema.parse(row.original)
+
 
   return (
     <DropdownMenu>
@@ -32,10 +38,22 @@ export function DataTableRowActions<TCompanyData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end' className='w-[160px]'>
-        <DropdownMenuItem>Edit</DropdownMenuItem>
-        <DropdownMenuItem>Make a copy</DropdownMenuItem>
-        <DropdownMenuItem>Favorite</DropdownMenuItem>
-        {/*         <DropdownMenuSeparator />
+        <DropdownMenuItem
+          onClick={() => navigate(`/app/company/edit?id=${company.id}`)}
+        >
+          Edit
+          <DropdownMenuShortcut>✎</DropdownMenuShortcut>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          Make a copy
+          <DropdownMenuShortcut>📁</DropdownMenuShortcut>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          Favorite
+          <DropdownMenuShortcut>☆</DropdownMenuShortcut>
+        </DropdownMenuItem>
+        {/*         
+        <DropdownMenuSeparator />
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>Companies</DropdownMenuSubTrigger>
           <DropdownMenuSubContent>
@@ -48,10 +66,11 @@ export function DataTableRowActions<TCompanyData>({
             </DropdownMenuRadioGroup>
           </DropdownMenuSubContent>
         </DropdownMenuSub>
-        <DropdownMenuSeparator /> */}
-        <DropdownMenuItem>
+        <DropdownMenuSeparator /> 
+        */}
+        <DropdownMenuItem onClick={() => fromList.onDeleteCompany(company.id)}>
           Delete
-          <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+          <DropdownMenuShortcut>🗑️</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios'
 
 const baseURL = import.meta.env.VITE_DEV_API_ENDPOINT
 
-class HttpRequest {
+class HttpRequestDeprecated {
   private axios: AxiosInstance
   private accessToken: string = ''
 
@@ -93,4 +93,4 @@ class HttpRequest {
   }
 }
 
-//export default new HttpRequest(baseURL)
+export default new HttpRequestDeprecated(baseURL)

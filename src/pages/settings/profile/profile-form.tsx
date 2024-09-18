@@ -174,7 +174,7 @@ export default function ProfileForm() {
             type='button'
             variant='outline'
             size='sm'
-            className='mt-2'
+            className='light:bg-white mt-2 light:hover:bg-gray-100'
             onClick={() => append({ value: '' })}
           >
             Add Contact

@@ -1,6 +1,6 @@
 import HttpRequest from '@/helpers/HttpRequest'
 import { z } from 'zod'
-import { companyFormSchema } from '../components/create-company-form'
+import { companyFormSchema } from '../create/components/create-company-form'
 import { useNavigate } from 'react-router-dom'
 
 interface UseCreateCompanyController {

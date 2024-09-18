@@ -32,7 +32,8 @@ export default function Settings() {
             Settings
           </h1>
           <p className='text-muted-foreground'>
-            Manage your account settings and set e-mail preferences.
+            Customize your account settings and tailor your preferences to
+            enhance your experience.
           </p>
         </div>
         <Separator className='my-6' />
@@ -72,9 +73,9 @@ const sidebarNavItems = [
     icon: <IconBrowserCheck size={18} />,
     href: '/app/settings/display',
   },
-  {
+  /*   {
     title: 'Error Example',
     icon: <IconExclamationCircle size={18} />,
     href: '/app/settings/error-example',
-  },
+  }, */
 ]

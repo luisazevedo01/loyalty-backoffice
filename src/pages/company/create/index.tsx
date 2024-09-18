@@ -1,4 +1,4 @@
-import CreateCompanyForm from '../components/create-company-form'
+import CreateCompanyForm from './components/create-company-form'
 import useCreateCompany from '../hooks/use-create-company'
 
 export default function CompanyCreate() {
