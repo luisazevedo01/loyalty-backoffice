@@ -1,9 +1,16 @@
 import { useTranslation } from 'react-i18next'
 import { UserAuthForm } from './components/user-auth-form'
 import ViteLogo from '@/assets/vite.svg'
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '@/hooks/use-auth';
 
 export default function SignIn() {
   const {t} = useTranslation();
+  const auth = useAuth()
+  
+  if (auth.isLoggedIn) {
+    return <Navigate to='/app' replace />
+  }
 
   return (
     <>

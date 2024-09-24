@@ -13,7 +13,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/custom/button'
 import { PasswordInput } from '@/components/custom/password-input'
-import { cn } from '@/utils/classes'
+import { cn } from '@/lib/utils'
 import { useNavigate } from 'react-router-dom'
 import HttpRequest from '@/helpers/HttpRequest'
 

@@ -8,7 +8,15 @@ import { DataTableRowActions } from './data-table-row-actions'
 import { categories } from '../data/data'
 import { Company } from '../data/schema'
 
-export const companyColumns: ColumnDef<Company>[] = [
+interface CompanyColumnsProps {
+  onEdit: (company: Company) => void
+  onDelete: (company: Company) => void
+}
+
+export const companyColumns = ({
+  onEdit,
+  onDelete,
+}: CompanyColumnsProps): ColumnDef<Company>[] => [
   /*   {
     id: 'select',
     header: ({ table }) => (
@@ -159,6 +167,6 @@ export const companyColumns: ColumnDef<Company>[] = [
   },
   {
     id: 'actions',
-    cell: ({ row }) => <DataTableRowActions row={row} />,
+    cell: ({ row }) => <DataTableRowActions row={row} onEdit={onEdit} onDelete={onDelete} />,
   },
 ]

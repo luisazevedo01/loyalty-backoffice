@@ -9,6 +9,7 @@ import i18n from 'i18next'
 import { I18nextProvider, initReactI18next } from 'react-i18next'
 import english from '@/locales/en/translation.json'
 import portugues from '@/locales/pt/translation.json'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -25,13 +26,18 @@ i18n.use(initReactI18next).init({
     escapeValue: false,
   },
 })
+
+const queryClient = new QueryClient()
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
-    <AuthProvider>
-      <I18nextProvider i18n={i18n}>
-        <RouterProvider router={router} />
-        <Toaster />
-      </I18nextProvider>
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <I18nextProvider i18n={i18n}>
+          <RouterProvider router={router} />
+          <Toaster />
+        </I18nextProvider>
+      </AuthProvider>
+    </QueryClientProvider>
   </ThemeProvider>
 )

@@ -1,8 +1,7 @@
 import HttpRequest from './HttpRequest'
 
 class AuthManager {
-  private static instance: AuthManager
-  private token: string | null = null
+  private static instance: AuthManager | null = null
 
   private constructor() {}
 
@@ -13,22 +12,28 @@ class AuthManager {
     return AuthManager.instance
   }
 
+  private getSessionToken(): string | null {
+    return sessionStorage.getItem('auth_token')
+  }
+
+  private setSessionToken(token: string): void {
+    sessionStorage.setItem('auth_token', token)
+  }
+
+  private clearSessionToken(): void {
+    sessionStorage.removeItem('auth_token')
+  }
+
   public getToken(): string | null {
-    return this.token
+    return this.getSessionToken()
   }
 
   public setToken(token: string): void {
-    this.token = token
-    // Set a secure httpOnly cookie as fallback
-    // This should be done server-side for true security
-    document.cookie = `auth_token=${token}; path=/; secure; httpOnly; sameSite=strict`
+    this.setSessionToken(token)
   }
 
   public clearToken(): void {
-    this.token = null
-    // Clear the cookie
-    document.cookie =
-      'auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT'
+    this.clearSessionToken()
   }
 
   public async login(credentials: {
@@ -46,12 +51,12 @@ class AuthManager {
 
   public logout(): void {
     this.clearToken()
-    // Additional logout logic (e.g., redirecting to login page)
   }
 
   public isLoggedIn(): boolean {
-    return !!this?.token
+    return !!this?.getSessionToken()
   }
 }
 
-export default AuthManager.getInstance()
+// Export the class itself, not the singleton instance
+export default AuthManager.getInstance();

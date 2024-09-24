@@ -4,6 +4,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from 'react'
@@ -25,24 +26,21 @@ const AuthContext = createContext(defaultValue)
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(AuthManager.isLoggedIn)
 
-  const onLogin = useCallback(
-    async (data: any) => {
-      try {
-        await AuthManager.login(data)
-        setIsLoggedIn(true)
-      } catch (error) {
-        console.error('Login failed:', error)
-      }
-    },
-    []
-  )
+  const onLogin = useCallback(async (data: any) => {
+    try {
+      await AuthManager.login(data)
+      setIsLoggedIn(true)
+    } catch (error) {
+      console.error('ERR (onLogin):', error)
+    }
+  }, [])
 
   const onLogout = async () => {
     try {
       AuthManager.logout()
       setIsLoggedIn(false)
     } catch (err) {
-      console.log('ERR:', err)
+      console.log('ERR (onLogout):', err)
     }
   }
 
@@ -54,6 +52,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }),
     [isLoggedIn]
   )
+
+  useEffect(() => {
+    const token = AuthManager.getToken()
+    if (token) {
+      setIsLoggedIn(true)
+    }
+  }, [])
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

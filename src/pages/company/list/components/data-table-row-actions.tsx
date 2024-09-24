@@ -10,16 +10,18 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { companySchema } from '../data/schema'
-import HttpRequest from '@/helpers/HttpRequest'
 import { useNavigate } from 'react-router-dom'
 import useListCompany from '../../hooks/use-list-company'
 
 interface DataTableRowActionsProps<TCompanyData> {
   row: Row<TCompanyData>
+  onEdit: (value: TCompanyData) => void;
+  onDelete: (value: TCompanyData) => void;
 }
 
 export function DataTableRowActions<TCompanyData>({
   row,
+  onDelete
 }: DataTableRowActionsProps<TCompanyData>) {
   const navigate = useNavigate()
   const fromList = useListCompany();
@@ -68,7 +70,7 @@ export function DataTableRowActions<TCompanyData>({
         </DropdownMenuSub>
         <DropdownMenuSeparator /> 
         */}
-        <DropdownMenuItem onClick={() => fromList.onDeleteCompany(company.id)}>
+        <DropdownMenuItem onClick={() => onDelete(row.original)}>
           Delete
           <DropdownMenuShortcut>🗑️</DropdownMenuShortcut>
         </DropdownMenuItem>

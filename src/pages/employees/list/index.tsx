@@ -4,7 +4,6 @@ import {
   IconSortAscendingLetters,
   IconSortDescendingLetters,
 } from '@tabler/icons-react'
-import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
 import { Input } from '@/components/ui/input'
 import {
   Select,
@@ -14,8 +13,6 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
-import ThemeSwitch from '@/components/theme-switch'
-import { UserNav } from '@/components/user-nav'
 import { Button } from '@/components/custom/button'
 import { employees } from '../data'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
@@ -82,14 +79,14 @@ export default function EmployeesList() {
             Here&apos;s a list of employees associated to your company!
           </p>
         </div>
-        <div className='flex items-center space-x-2'>
+{/*         <div className='flex items-center space-x-2'>
           <Button
             className='flex gap-1'
             onClick={() => navigate('/app/employees/create')}
           >
             Add Employee
           </Button>
-        </div>
+        </div> */}
       </div>
       {/*         <div>
           <h1 className='text-2xl font-bold tracking-tight'>Users</h1>

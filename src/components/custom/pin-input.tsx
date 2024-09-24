@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { cn } from "@/utils/classes"
+import { cn } from "@/lib/utils"
 
 interface PinInputProps {
   children:
