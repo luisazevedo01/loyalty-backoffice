@@ -12,28 +12,52 @@ import {
 interface ConfirmationDialogProps {
   open: boolean
   onOpenChange: (open: boolean) => void
+  onCancel: () => void
+  onConfirm: () => void
+  title?: string
+  description?: string
 }
 
 const ConfirmationDialog = ({
   open,
+  title,
+  description,
   onOpenChange,
+  onConfirm,
+  onCancel,
 }: ConfirmationDialogProps) => {
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogTitle>
+            {title || 'Are you absolutely sure?'}
+          </AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+            {description ||
+              'This action cannot be undone.'}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel onClick={() => onOpenChange(false)}>
+          <AlertDialogCancel
+            onClick={() => {
+              onCancel()
+              setTimeout(() => {
+                document.body.style.pointerEvents = 'auto'
+              }, 500)
+            }}
+          >
             Cancel
           </AlertDialogCancel>
-          <AlertDialogAction onClick={() => onOpenChange(false)}>
-            Continue
+          <AlertDialogAction
+            onClick={() => {
+              onConfirm()
+              setTimeout(() => {
+                document.body.style.pointerEvents = 'auto'
+              }, 500)
+            }}
+          >
+            Confirm
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

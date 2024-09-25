@@ -1,34 +1,31 @@
-import HttpRequest from '@/helpers/HttpRequest'
 import { z } from 'zod'
 import { companyFormSchema } from '../create/components/create-company-form'
 import { useNavigate } from 'react-router-dom'
+import { useMutation } from '@tanstack/react-query'
+import { createCompany } from '@/services/company'
+import { useToast } from '@/components/ui/use-toast'
 
 interface UseCreateCompanyController {
-  createCompany: (data: z.infer<typeof companyFormSchema>) => Promise<void>
+  createCompany: (data: z.infer<typeof companyFormSchema>) => void
 }
 
 const useCreateCompany = (): UseCreateCompanyController => {
-  const navigate = useNavigate();
-  const createCompany = async (data: z.infer<typeof companyFormSchema>) => {
-    try {
-      const res = await HttpRequest.POST('/company', {
-        name: data.name,
-        description: data.description,
-        category: data.category,
-        logo: data.logo,
-        website: data.website,
-        facebook: data.facebook,
-        instagram: data.instagram,
-      })
-      console.log(res, '!!!!!!?!')
-      navigate('/app/company')
-    } catch (err) {
-      console.log(err)
-      alert('Error on createCompany()')
-    }
-  }
+  const navigate = useNavigate()
+  const { toast } = useToast()
+
+  const createMutation = useMutation({
+    mutationFn: (company: z.infer<typeof companyFormSchema>) =>
+      createCompany(company),
+    onSuccess: () => navigate('/app/company'),
+    onError: () =>
+      toast({
+        variant: 'destructive',
+        description: 'Whoops! Something went wrong.',
+      }),
+  })
+
   return {
-    createCompany,
+    createCompany: createMutation.mutate,
   }
 }
 

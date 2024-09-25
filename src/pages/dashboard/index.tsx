@@ -12,14 +12,9 @@ import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
 import { RecentSales } from './components/recent-sales'
 import { Overview } from './components/overview'
 import useDashboard from './hooks/use-dashboard'
-import { useEffect } from 'react'
 
 export default function Dashboard() {
-  const fromDashboard = useDashboard();
-
-  useEffect(() => {
-    fromDashboard.getUser();
-  }, [])
+  const fromDashboard = useDashboard()
 
   return (
     <Layout>
@@ -37,7 +32,7 @@ export default function Dashboard() {
           <h1 className='text-2xl font-bold tracking-tight md:text-3xl'>
             Dashboard
           </h1>
-{/*           <div className='flex items-center space-x-2'>
+          {/*           <div className='flex items-center space-x-2'>
             <Button className='flex gap-1' onClick={fetchCompanies}>
               Extract
               <IconDownload size={18} />

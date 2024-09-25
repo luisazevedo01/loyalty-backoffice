@@ -7,17 +7,19 @@ import { useToast } from '@/components/ui/use-toast'
 
 interface UseListCompanyController {
   companies: Array<any> | undefined
-  isConfirmationDialogOpen: boolean
-  setIsConfirmationDialogOpen: (value: SetStateAction<boolean>) => void
+  showConfirmationDialog: boolean
+  setShowConfirmationDialog: (value: SetStateAction<boolean>) => void
+  onDeleteConfirmation: () => void
   onDelete: (company: Company) => void
 }
 
 const useListCompany = (): UseListCompanyController => {
-  const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] =
-    useState<boolean>(false)
-
   const queryClient = useQueryClient()
-  const toast = useToast()
+  const [showConfirmationDialog, setShowConfirmationDialog] =
+    useState<boolean>(false)
+  const [targetCompany, setTargetCompany] = useState<Company | null>(null)
+
+  const { toast } = useToast()
 
   const { data } = useQuery({
     queryKey: ['allCompanies'],
@@ -32,29 +34,31 @@ const useListCompany = (): UseListCompanyController => {
     },
   })
 
-  /*   const getCompanies = useCallback(async () => {
-    try {
-      const companies = await fetchCompanies()
-      setCompanies(companies)
-    } catch (err) {
-      console.error(err)
-      alert('Error on getCompanies()')
-    }
-  }, []) */
+  const onDelete = useCallback((company: Company) => {
+    setTargetCompany(company)
+    setShowConfirmationDialog(true)
+  }, [])
 
-  const onDelete = useCallback((company: Company): void => {
-    deleteMutation.mutate(company.id, {
+  const onDeleteConfirmation = useCallback((): void => {
+    deleteMutation.mutate(targetCompany?.id || '', {
       onSuccess: () => {
-        alert('Company was deleted!!')
+        toast({ description: 'Company was deleted successfully!' })
+      },
+      onError: () => {
+        toast({
+          variant: 'destructive',
+          description: 'Whoops! Something went wrong.',
+        })
       },
     })
-  }, [])
+  }, [targetCompany])
 
   return {
     companies: data,
-    isConfirmationDialogOpen,
-    setIsConfirmationDialogOpen,
+    showConfirmationDialog,
     onDelete,
+    onDeleteConfirmation,
+    setShowConfirmationDialog,
   }
 }
 

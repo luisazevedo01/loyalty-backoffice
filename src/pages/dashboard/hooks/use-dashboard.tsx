@@ -1,22 +1,19 @@
 import HttpRequest from '@/helpers/HttpRequest'
+import { getUser } from '@/services/user'
+import { useQuery } from '@tanstack/react-query'
 
 interface UseDashboardController {
-  getUser: () => Promise<void>
+  user: any
 }
 
 const useDashboard = (): UseDashboardController => {
-  const getUser = async () => {
-    try {
-      const res = await HttpRequest.GET('/user/me')
-      console.log(res, '!!!!!!?!')
-    } catch (err) {
-      console.log(err)
-      alert('Error')
-    }
-  }
+  const { data } = useQuery({
+    queryKey: ['userMe'],
+    queryFn: getUser,
+  })
 
   return {
-    getUser,
+    user: data,
   }
 }
 

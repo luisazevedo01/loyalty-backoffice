@@ -24,14 +24,12 @@ import { toast } from '@/components/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 interface CreateCompanyFormProps {
-  data: unknown;
-  createCompany: (data: z.infer<typeof companyFormSchema>) => Promise<void>;
+  createCompany: (data: z.infer<typeof companyFormSchema>) => void;
 }
 
 type CompanyFormValues = z.infer<typeof companyFormSchema>
 
 export default function CreateCompanyForm(props: CreateCompanyFormProps) {
-  const navigate = useNavigate()
   const form = useForm<CompanyFormValues>({
     resolver: zodResolver(companyFormSchema),
     mode: 'onChange',

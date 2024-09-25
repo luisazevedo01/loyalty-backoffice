@@ -11,22 +11,19 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { companySchema } from '../data/schema'
 import { useNavigate } from 'react-router-dom'
-import useListCompany from '../../hooks/use-list-company'
 
 interface DataTableRowActionsProps<TCompanyData> {
   row: Row<TCompanyData>
-  onEdit: (value: TCompanyData) => void;
-  onDelete: (value: TCompanyData) => void;
+  onEdit: (value: TCompanyData) => void
+  onDelete: (value: TCompanyData) => void
 }
 
 export function DataTableRowActions<TCompanyData>({
   row,
-  onDelete
+  onDelete,
 }: DataTableRowActionsProps<TCompanyData>) {
   const navigate = useNavigate()
-  const fromList = useListCompany();
   const company = companySchema.parse(row.original)
-
 
   return (
     <DropdownMenu>
@@ -49,10 +46,6 @@ export function DataTableRowActions<TCompanyData>({
         <DropdownMenuItem>
           Make a copy
           <DropdownMenuShortcut>📁</DropdownMenuShortcut>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          Favorite
-          <DropdownMenuShortcut>☆</DropdownMenuShortcut>
         </DropdownMenuItem>
         {/*         
         <DropdownMenuSeparator />
