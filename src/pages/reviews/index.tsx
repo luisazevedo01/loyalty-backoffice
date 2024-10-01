@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {
   IconAdjustmentsHorizontal,
   IconSortAscendingLetters,
   IconSortDescendingLetters,
-  IconStar,
-  IconStarFilled,
+
 } from '@tabler/icons-react'
 import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
 import { Input } from '@/components/ui/input'

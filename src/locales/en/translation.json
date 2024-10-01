@@ -1,6 +1,24 @@
 {
   "lbl_privacy_policy": "Privacy Policy",
   "lbl_sign_in": "Sign-In",
+  "lbl_sign_in_description_1": "Enter your email and password below",
+  "lbl_sign_in_description_2": "to log into your account",
   "lbl_sign_up": "Sign-Up",
-  "lbl_promotions": "Promotions"
+  "lbl_promotions": "Promotions",
+  "lbl_terms_and_conditions": "Terms & Conditions",
+  "lbl_and_policies": "and",
+  "lbl_terms_and_conditions_description": "By clicking login, you agree to our",
+  "lbl_forgot_password": "Forgot password",
+  "lbl_username": "Username",
+  "lbl_password": "Password",
+  "lbl_dashboard": "Dashboard",
+  "lbl_loyal_customers": "Loyal customers",
+  "lbl_discounts_used": "Discounts used",
+  "lbl_spendings": "Spendings",
+  "lbl_number_of_stamps": "Nº of Stamps",
+  "lbl_recent_loyal_customers": "Recent Loyal Customers",
+  "lbl_number_new_loyal_customers": "new loyal customers this month.",
+  "lbl_from_last_month": "from last month",
+  "lbl_since_last_hour": "since last hour",
+  "lbl_overview": "Overview"
 }

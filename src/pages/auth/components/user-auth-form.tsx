@@ -16,6 +16,7 @@ import { Button } from '@/components/custom/button'
 import { PasswordInput } from '@/components/custom/password-input'
 import { cn } from '@/lib/utils'
 import { useAuth } from '@/hooks/use-auth'
+import { useTranslation } from 'react-i18next'
 
 interface UserAuthFormProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -36,6 +37,7 @@ const formSchema = z.object({
 })
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+  const {t} = useTranslation();
   const { onLogin } = useAuth()
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
@@ -71,9 +73,9 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               name='username'
               render={({ field }) => (
                 <FormItem className='space-y-1'>
-                  <FormLabel>Username</FormLabel>
+                  <FormLabel>{t('lbl_username')}</FormLabel>
                   <FormControl>
-                    <Input placeholder='username' {...field} />
+                    <Input {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -85,23 +87,23 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               render={({ field }) => (
                 <FormItem className='space-y-1'>
                   <div className='flex items-center justify-between'>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>{t('lbl_password')}</FormLabel>
                     <Link
                       to='/forgot-password'
                       className='text-sm font-medium text-muted-foreground hover:opacity-75'
                     >
-                      Forgot password?
+                      {t('lbl_forgot_password')}?
                     </Link>
                   </div>
                   <FormControl>
-                    <PasswordInput placeholder='********' {...field} />
+                    <PasswordInput {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <Button className='mt-2' loading={isLoading}>
-              Login
+              {t('lbl_sign_in')}
             </Button>
 
             {/*               <div className='relative my-2'>

@@ -12,8 +12,10 @@ import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
 import { RecentSales } from './components/recent-sales'
 import { Overview } from './components/overview'
 import useDashboard from './hooks/use-dashboard'
+import { useTranslation } from 'react-i18next'
 
 export default function Dashboard() {
+  const {t} = useTranslation();
   const fromDashboard = useDashboard()
 
   return (
@@ -30,7 +32,7 @@ export default function Dashboard() {
       <LayoutBody className='space-y-4'>
         <div className='flex items-center justify-between space-y-2'>
           <h1 className='text-2xl font-bold tracking-tight md:text-3xl'>
-            Dashboard
+            {t('lbl_dashboard')}
           </h1>
           {/*           <div className='flex items-center space-x-2'>
             <Button className='flex gap-1' onClick={fetchCompanies}>
@@ -49,7 +51,7 @@ export default function Dashboard() {
               <Card>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
                   <CardTitle className='text-sm font-medium'>
-                    Loyal customers
+                    {t('lbl_loyal_customers')}
                   </CardTitle>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -69,14 +71,14 @@ export default function Dashboard() {
                 <CardContent>
                   <div className='text-2xl font-bold'>1 231</div>
                   <p className='text-xs text-muted-foreground'>
-                    +20.1% from last month
+                    +20.1% {t('lbl_from_last_month')}
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
                   <CardTitle className='text-sm font-medium'>
-                    Discounts used
+                    {t('lbl_discounts_used')}
                   </CardTitle>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -95,14 +97,14 @@ export default function Dashboard() {
                 <CardContent>
                   <div className='text-2xl font-bold'>2 350</div>
                   <p className='text-xs text-muted-foreground'>
-                    +180.1% from last month
+                    +180.1% {t('lbl_from_last_month')}
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
                   <CardTitle className='text-sm font-medium'>
-                    Spendings
+                    {t('lbl_spendings')}
                   </CardTitle>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -120,14 +122,14 @@ export default function Dashboard() {
                 <CardContent>
                   <div className='text-2xl font-bold'>€ 12,234</div>
                   <p className='text-xs text-muted-foreground'>
-                    +19% from last month
+                    +19% {t('lbl_from_last_month')}
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
                   <CardTitle className='text-sm font-medium'>
-                    Nº of Stamps
+                    {t('lbl_number_of_stamps')}
                   </CardTitle>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -145,7 +147,7 @@ export default function Dashboard() {
                 <CardContent>
                   <div className='text-2xl font-bold'>10 573</div>
                   <p className='text-xs text-muted-foreground'>
-                    +201 since last hour
+                    +201 {t('lbl_since_last_hour')}
                   </p>
                 </CardContent>
               </Card>
@@ -153,7 +155,7 @@ export default function Dashboard() {
             <div className='grid grid-cols-1 gap-4 lg:grid-cols-7'>
               <Card className='col-span-1 lg:col-span-4'>
                 <CardHeader>
-                  <CardTitle>Overview</CardTitle>
+                  <CardTitle>{t('lbl_overview')}</CardTitle>
                 </CardHeader>
                 <CardContent className='pl-2'>
                   <Overview />
@@ -161,9 +163,9 @@ export default function Dashboard() {
               </Card>
               <Card className='col-span-1 lg:col-span-3'>
                 <CardHeader>
-                  <CardTitle>Recent Loyal Customers</CardTitle>
+                  <CardTitle>{t('lbl_recent_loyal_customers')}</CardTitle>
                   <CardDescription>
-                    265 new loyal customers this month.
+                    265 {t('lbl_number_new_loyal_customers')}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
