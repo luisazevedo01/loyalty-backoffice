@@ -1,29 +1,41 @@
-import HttpRequest from '@/helpers/HttpRequest'
 import { SetStateAction, useCallback, useEffect, useState } from 'react'
 import { Company } from '../list/data/schema'
-import { deleteCompany, fetchCompanies } from '@/services/company'
+import {
+  createNewEmployee,
+  deleteCompany,
+  getAllCompanies,
+} from '@/services/company'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useToast } from '@/components/ui/use-toast'
 
 interface UseListCompanyController {
   companies: Array<any> | undefined
   showConfirmationDialog: boolean
+  showAddEmployeeDialog: boolean
+  newEmployee: string
+  onOpenChangeEmployeeDialog: (newValue: boolean) => void
   setShowConfirmationDialog: (value: SetStateAction<boolean>) => void
-  onDeleteConfirmation: () => void
+  setShowAddEmployeeDialog: (value: SetStateAction<boolean>) => void
+  setNewEmployee: (newValue: SetStateAction<string>) => void
+  addEmployee: (company: Company) => void
+  onSubmitNewEmployee: () => void
   onDelete: (company: Company) => void
+  onDeleteConfirmation: () => void
 }
 
 const useListCompany = (): UseListCompanyController => {
   const queryClient = useQueryClient()
-  const [showConfirmationDialog, setShowConfirmationDialog] =
-    useState<boolean>(false)
-  const [targetCompany, setTargetCompany] = useState<Company | null>(null)
-
   const { toast } = useToast()
+
+  const [showConfirmationDialog, setShowConfirmationDialog] = useState(false)
+  const [showAddEmployeeDialog, setShowAddEmployeeDialog] = useState(false)
+
+  const [targetCompany, setTargetCompany] = useState<Company | null>(null)
+  const [newEmployee, setNewEmployee] = useState('')
 
   const { data } = useQuery({
     queryKey: ['allCompanies'],
-    queryFn: () => fetchCompanies(),
+    queryFn: () => getAllCompanies(),
     initialData: [],
   })
 
@@ -34,9 +46,39 @@ const useListCompany = (): UseListCompanyController => {
     },
   })
 
+  const createMutation = useMutation({
+    mutationFn: ({ companyId, email }: { companyId: string; email: string }) =>
+      createNewEmployee(companyId, email),
+    onSuccess: () => toast({ description: 'Employee added successfully!!' }),
+    onError: () =>
+      toast({
+        variant: 'destructive',
+        description: 'Whoops! Something went wrong.',
+      }),
+  })
+
+  const onSubmitNewEmployee = () => {
+    createMutation.mutate({
+      companyId: targetCompany?.id || '',
+      email: newEmployee,
+    })
+    setShowAddEmployeeDialog(!showAddEmployeeDialog)
+    setNewEmployee('')
+  }
+
+  const onOpenChangeEmployeeDialog = (newValue: boolean) => {
+    setShowAddEmployeeDialog(newValue)
+    setNewEmployee('')
+  }
+
   const onDelete = useCallback((company: Company) => {
     setTargetCompany(company)
     setShowConfirmationDialog(true)
+  }, [])
+
+  const addEmployee = useCallback((company: Company) => {
+    setTargetCompany(company)
+    setShowAddEmployeeDialog(true)
   }, [])
 
   const onDeleteConfirmation = useCallback((): void => {
@@ -55,10 +97,17 @@ const useListCompany = (): UseListCompanyController => {
 
   return {
     companies: data,
+    newEmployee,
+    showAddEmployeeDialog,
     showConfirmationDialog,
     onDelete,
+    addEmployee,
+    setNewEmployee,
+    onSubmitNewEmployee,
     onDeleteConfirmation,
+    setShowAddEmployeeDialog,
     setShowConfirmationDialog,
+    onOpenChangeEmployeeDialog,
   }
 }
 

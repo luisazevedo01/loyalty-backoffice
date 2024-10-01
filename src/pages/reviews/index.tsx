@@ -26,7 +26,7 @@ import { CheckCircledIcon, CrossCircledIcon } from '@radix-ui/react-icons'
 import useReviews from './hooks/use-reviews'
 
 export default function Reviews() {
-  const fromReviews = useReviews();
+  const fromReviews = useReviews()
 
   const [sort, setSort] = useState('ascending')
   const [reviewType, setReviewType] = useState('all')
@@ -76,11 +76,13 @@ export default function Reviews() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            {/*             <Select value={appType} onValueChange={setAppType}>
+
+{/*             <Select value={fromReviews.targetCompany} onValueChange={fromReviews.setTargetCompany}>
               <SelectTrigger className='w-36'>
-                <SelectValue>{appText.get(appType)}</SelectValue>
+                <SelectValue>{fromReviews.targetCompany.name}</SelectValue>
               </SelectTrigger>
               <SelectContent>
+             {fromReviews.}
                 <SelectItem value='all'>All Apps</SelectItem>
                 <SelectItem value='connected'>Connected</SelectItem>
                 <SelectItem value='notConnected'>Not Connected</SelectItem>
@@ -143,7 +145,11 @@ export default function Reviews() {
                   className={`flex gap-1 border ${review.complied ? 'border-green-300 bg-green-50 hover:bg-green-100 dark:border-green-700 dark:bg-green-950 dark:hover:bg-green-900' : 'border-red-300 bg-red-50 hover:bg-red-100 dark:border-red-700 dark:bg-red-950 dark:hover:bg-red-900'}`}
                 >
                   {review.complied ? 'Complied' : 'Not Complied'}
-                  {review.complied ? <CheckCircledIcon/> : <CrossCircledIcon/>}
+                  {review.complied ? (
+                    <CheckCircledIcon />
+                  ) : (
+                    <CrossCircledIcon />
+                  )}
                 </Button>
               </div>
               <div>

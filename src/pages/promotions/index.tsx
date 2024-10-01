@@ -168,7 +168,7 @@ export default function Promotions() {
                       </div>
                     </li>
                     <li
-                      key='2'
+                      key='3'
                       className='rounded-lg border p-4 hover:shadow-md'
                     >
                       <div className='mb-8 flex items-center justify-between'>
@@ -198,7 +198,7 @@ export default function Promotions() {
                     <Card className='col-span-1 lg:col-span-3'>
                       <CardHeader>
                         <CardTitle>
-                          <h1>Standard</h1>
+                          Standard
                         </CardTitle>
                         <CardDescription>
                           With the Standard pack you may view some
@@ -211,7 +211,7 @@ export default function Promotions() {
                     <Card className='col-span-1 lg:col-span-3'>
                       <CardHeader>
                         <CardTitle>
-                          <h1>Silver</h1>
+                          Silver
                         </CardTitle>
                         <CardDescription>
                           With the Silver pack you will have a specific
@@ -224,7 +224,7 @@ export default function Promotions() {
                     <Card className='col-span-1 lg:col-span-3'>
                       <CardHeader>
                         <CardTitle>
-                          <h1>Gold</h1>
+                          Gold
                         </CardTitle>
                         <CardDescription>
                           With the Gold pack you will have a access to all

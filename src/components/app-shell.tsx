@@ -12,7 +12,7 @@ export default function AppShell() {
   }
 
   return (
-    <div className='relative h-full overflow-hidden bg-background'>
+    <div className='relative h-full overflow-hidden'>
       <Sidebar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
       <main
         id='content'

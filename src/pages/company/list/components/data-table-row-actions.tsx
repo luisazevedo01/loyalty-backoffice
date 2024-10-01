@@ -11,15 +11,18 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { companySchema } from '../data/schema'
 import { useNavigate } from 'react-router-dom'
+import { DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu'
 
 interface DataTableRowActionsProps<TCompanyData> {
   row: Row<TCompanyData>
   onEdit: (value: TCompanyData) => void
+  addEmployee: (value: TCompanyData) => void;
   onDelete: (value: TCompanyData) => void
 }
 
 export function DataTableRowActions<TCompanyData>({
   row,
+  addEmployee,
   onDelete,
 }: DataTableRowActionsProps<TCompanyData>) {
   const navigate = useNavigate()
@@ -43,12 +46,9 @@ export function DataTableRowActions<TCompanyData>({
           Edit
           <DropdownMenuShortcut>✎</DropdownMenuShortcut>
         </DropdownMenuItem>
-        <DropdownMenuItem>
-          Make a copy
-          <DropdownMenuShortcut>📁</DropdownMenuShortcut>
-        </DropdownMenuItem>
-        {/*         
+        <DropdownMenuItem onClick={() => addEmployee(row.original)}>Add Employee</DropdownMenuItem>
         <DropdownMenuSeparator />
+        {/*         
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>Companies</DropdownMenuSubTrigger>
           <DropdownMenuSubContent>
@@ -63,9 +63,9 @@ export function DataTableRowActions<TCompanyData>({
         </DropdownMenuSub>
         <DropdownMenuSeparator /> 
         */}
+        <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => onDelete(row.original)}>
           Delete
-          <DropdownMenuShortcut>🗑️</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -4,9 +4,27 @@ import { Company } from '@/pages/company/list/data/schema'
 import { AxiosResponse } from 'axios'
 import { z } from 'zod'
 
-export const fetchCompanies = async (): Promise<Company[]> => {
+export const getAllCompanies = async (): Promise<Company[]> => {
   const companies = await HttpRequest.GET('/company')
   return companies.data
+}
+
+export const getCompanyEmployees = async (
+  companyId: string
+): Promise<Company[]> => {
+  const companies = await HttpRequest.GET(
+    `/company/${companyId}/getCompanyUsers`
+  )
+  return companies.data
+}
+
+export const createNewEmployee = async (
+  companyId: string,
+  email: string
+): Promise<AxiosResponse<any, any>> => {
+  return await HttpRequest.POST(`/company/${companyId}/addEmployeeToCompany`, {
+    email,
+  })
 }
 
 export const createCompany = async (

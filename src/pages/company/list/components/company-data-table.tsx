@@ -42,7 +42,7 @@ export function CompanyDataTable<TCompanyData, TValue>({
     []
   )
   const [sorting, setSorting] = React.useState<SortingState>([])
-  console.log('DATA (table): ', data)
+
   const table = useReactTable({
     data,
     columns,

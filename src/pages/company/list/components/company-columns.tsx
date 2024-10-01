@@ -10,11 +10,13 @@ import { Company } from '../data/schema'
 
 interface CompanyColumnsProps {
   onEdit: (company: Company) => void
+  addEmployee: (company: Company) => void
   onDelete: (company: Company) => void
 }
 
 export const companyColumns = ({
   onEdit,
+  addEmployee,
   onDelete,
 }: CompanyColumnsProps): ColumnDef<Company>[] => [
   /*   {
@@ -167,6 +169,6 @@ export const companyColumns = ({
   },
   {
     id: 'actions',
-    cell: ({ row }) => <DataTableRowActions row={row} onEdit={onEdit} onDelete={onDelete} />,
+    cell: ({ row }) => <DataTableRowActions row={row} addEmployee={addEmployee} onEdit={onEdit} onDelete={onDelete} />,
   },
 ]
