@@ -4,7 +4,7 @@
   "lbl_sign_in_description_1": "Enter your email and password below",
   "lbl_sign_in_description_2": "to log into your account",
   "lbl_sign_up": "Sign-Up",
-  "lbl_promotions": "Promotions",
+  "lbl_loyalty_programs": "Loyalty Programs",
   "lbl_terms_and_conditions": "Terms & Conditions",
   "lbl_and_policies": "and",
   "lbl_terms_and_conditions_description": "By clicking login, you agree to our",
@@ -20,5 +20,7 @@
   "lbl_number_new_loyal_customers": "new loyal customers this month.",
   "lbl_from_last_month": "from last month",
   "lbl_since_last_hour": "since last hour",
-  "lbl_overview": "Overview"
+  "lbl_overview": "Overview",
+  "lbl_company_name": "Company Name (e.g., ABC Enterprises)"
+
 }

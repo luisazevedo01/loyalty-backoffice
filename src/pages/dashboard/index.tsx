@@ -13,9 +13,10 @@ import { RecentSales } from './components/recent-sales'
 import { Overview } from './components/overview'
 import useDashboard from './hooks/use-dashboard'
 import { useTranslation } from 'react-i18next'
+import FlagSwitch from '@/components/flag-switch'
 
 export default function Dashboard() {
-  const {t} = useTranslation();
+  const { t } = useTranslation()
   const fromDashboard = useDashboard()
 
   return (
@@ -23,6 +24,7 @@ export default function Dashboard() {
       {/* ===== Top Heading ===== */}
       <LayoutHeader>
         <div className='ml-auto flex items-center space-x-4'>
+          <FlagSwitch />
           <ThemeSwitch />
           <UserNav />
         </div>

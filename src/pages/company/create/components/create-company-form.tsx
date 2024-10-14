@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { Button } from '@/components/custom/button'
 import {
@@ -22,6 +22,7 @@ import {
 import { Textarea } from '@/components/ui/textarea'
 import { toast } from '@/components/ui/use-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useTranslation } from 'react-i18next'
 
 interface CreateCompanyFormProps {
   createCompany: (data: z.infer<typeof companyFormSchema>) => void;
@@ -30,6 +31,7 @@ interface CreateCompanyFormProps {
 type CompanyFormValues = z.infer<typeof companyFormSchema>
 
 export default function CreateCompanyForm(props: CreateCompanyFormProps) {
+  const {t} = useTranslation();
   const form = useForm<CompanyFormValues>({
     resolver: zodResolver(companyFormSchema),
     mode: 'onChange',
@@ -58,15 +60,10 @@ export default function CreateCompanyForm(props: CreateCompanyFormProps) {
               <FormLabel>Name</FormLabel>
               <FormControl>
                 <Input
-                  placeholder='Company Name (e.g., ABC Enterprises)'
+                  placeholder={t('lbl_company_name')}
                   {...field}
                 />
               </FormControl>
-              <FormDescription>
-                This is your public display name. It can be your real name or a
-                pseudonym. You can only change this once every 30 days.
-              </FormDescription>
-              <FormMessage />
             </FormItem>
           )}
         />

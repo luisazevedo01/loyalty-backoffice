@@ -64,9 +64,9 @@ const router = createBrowserRouter([
         }),
       },
       {
-        path: 'promotions',
+        path: 'loyalty-programs',
         lazy: async () => ({
-          Component: (await import('@/pages/promotions')).default,
+          Component: (await import('@/pages/loyalty-programs')).default,
         }),
       },
       {

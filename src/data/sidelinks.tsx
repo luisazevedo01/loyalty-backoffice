@@ -46,9 +46,9 @@ export const sidelinks: SideLink[] = [
     icon: <IconUsers size={18} />,
   },
   {
-    title: 'Promotions',
+    title: 'Loyalty Programs',
     label: '',
-    href: '/app/promotions',
+    href: '/app/loyalty-programs',
     icon: <IconFileEuro size={18} />,
   },
   {

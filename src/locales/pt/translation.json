@@ -4,7 +4,7 @@
     "lbl_sign_in_description_1": "Digite seu e-mail e senha abaixo",
     "lbl_sign_in_description_2": "para entrar em sua conta",
     "lbl_sing_up": "Registar",
-    "lbl_promotions": "Promoções",
+    "lbl_loyalty_programs": "Programas de Fidelidade",
     "lbl_terms_and_conditions": "Termos & Condições",
     "lbl_and_policies": "e a",
     "lbl_terms_and_conditions_description": "Ao clicar em entrar, você concorda com os nossos",
@@ -20,5 +20,6 @@
     "lbl_number_new_loyal_customers": "novos clientes fiéis este mês.",
     "lbl_from_last_month": "do mês passado",
     "lbl_since_last_hour": "desde a última hora",
-    "lbl_overview": "Visão geral"
+    "lbl_overview": "Visão geral",
+    "lbl_company_name": "Nome da Companhia (e.g., ABC LDA"
 }

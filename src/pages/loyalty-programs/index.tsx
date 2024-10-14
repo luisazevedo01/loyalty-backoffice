@@ -10,10 +10,15 @@ import ThemeSwitch from '@/components/theme-switch'
 import { UserNav } from '@/components/user-nav'
 import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
 import { useTranslation } from 'react-i18next'
-import usePromotions from './hooks/use-promotions'
+import useLoyaltyPrograms from './hooks/use-loyalty-programs'
+import StampCards from './components/stamp-cards'
+import Points from './components/points'
+import Cashback from './components/cashback'
+import Vouchers from './components/vouchers'
+import Deals from './components/deals'
 
-export default function Promotions() {
-  const fromController = usePromotions();
+export default function LoyaltyPrograms() {
+  const fromController = useLoyaltyPrograms()
   const { t } = useTranslation()
 
   return (
@@ -30,7 +35,7 @@ export default function Promotions() {
       <LayoutBody className='space-y-4'>
         <div className='flex items-center justify-between space-y-2'>
           <h1 className='text-2xl font-bold tracking-tight md:text-3xl'>
-            {t('lbl_promotions')}
+            {t('lbl_loyalty_programs')}
           </h1>
           {/*           <div className='flex items-center space-x-2'>
             <Button className='flex gap-1'>Next</Button>
@@ -44,9 +49,11 @@ export default function Promotions() {
           <div className='w-full overflow-x-scroll pb-2'>
             <TabsList>
               <TabsTrigger value='overview'>Overview</TabsTrigger>
-              <TabsTrigger value='analytics'>Vouchers</TabsTrigger>
-              <TabsTrigger value='reports'>Packs</TabsTrigger>
-              <TabsTrigger value='notifications'>Cashback</TabsTrigger>
+              <TabsTrigger value='stamp-cards'>Stamp Cards</TabsTrigger>
+              <TabsTrigger value='points'>Points</TabsTrigger>
+              <TabsTrigger value='cashback'>Cashback</TabsTrigger>
+              <TabsTrigger value='vouchers'>Vouchers/Coupons</TabsTrigger>
+              <TabsTrigger value='deals'>Deals</TabsTrigger>
             </TabsList>
           </div>
           <TabsContent value='overview' className='space-y-4'>
@@ -197,9 +204,7 @@ export default function Promotions() {
                   <div className='mt-2'>
                     <Card className='col-span-1 lg:col-span-3'>
                       <CardHeader>
-                        <CardTitle>
-                          Standard
-                        </CardTitle>
+                        <CardTitle>Standard</CardTitle>
                         <CardDescription>
                           With the Standard pack you may view some
                           informations...
@@ -210,9 +215,7 @@ export default function Promotions() {
                   <div className='mt-2'>
                     <Card className='col-span-1 lg:col-span-3'>
                       <CardHeader>
-                        <CardTitle>
-                          Silver
-                        </CardTitle>
+                        <CardTitle>Silver</CardTitle>
                         <CardDescription>
                           With the Silver pack you will have a specific
                           dashboard to help you manage your company...
@@ -223,9 +226,7 @@ export default function Promotions() {
                   <div className='mt-2'>
                     <Card className='col-span-1 lg:col-span-3'>
                       <CardHeader>
-                        <CardTitle>
-                          Gold
-                        </CardTitle>
+                        <CardTitle>Gold</CardTitle>
                         <CardDescription>
                           With the Gold pack you will have a access to all
                           informaiton available...
@@ -236,6 +237,21 @@ export default function Promotions() {
                 </CardContent>
               </Card>
             </div>
+          </TabsContent>
+          <TabsContent value='stamp-cards' className='space-y-4'>
+            <StampCards stamps={fromController.stampCards}/>
+          </TabsContent>
+          <TabsContent value='points' className='space-y-4'>
+            <Points points={fromController.points}/>
+          </TabsContent>
+          <TabsContent value='cashback' className='space-y-4'>
+            <Cashback programs={fromController.cashback}/>
+          </TabsContent>
+          <TabsContent value='vouchers' className='space-y-4'>
+            <Vouchers programs={fromController.vouchers}/>
+          </TabsContent>
+          <TabsContent value='deals' className='space-y-4'>
+            <Deals programs={fromController.deals}/>
           </TabsContent>
         </Tabs>
       </LayoutBody>
