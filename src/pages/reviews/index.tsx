@@ -3,7 +3,6 @@ import {
   IconAdjustmentsHorizontal,
   IconSortAscendingLetters,
   IconSortDescendingLetters,
-
 } from '@tabler/icons-react'
 import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
 import { Input } from '@/components/ui/input'
@@ -23,10 +22,14 @@ import { getInitials } from '@/utils/get-initials'
 import { Button } from '@/components/custom/button'
 import { CheckCircledIcon, CrossCircledIcon } from '@radix-ui/react-icons'
 import useReviews from './hooks/use-reviews'
+import { useTranslation } from 'react-i18next'
+import FlagSwitch from '@/components/flag-switch'
 
 export default function Reviews() {
+  const { t } = useTranslation()
   const fromReviews = useReviews()
 
+  const [company, setCompany] = useState("example2");
   const [sort, setSort] = useState('ascending')
   const [reviewType, setReviewType] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
@@ -53,6 +56,7 @@ export default function Reviews() {
         <div className='flex w-full items-center justify-between'>
           {/* <Search /> */}
           <div className='ml-auto flex items-center space-x-4'>
+            <FlagSwitch />
             <ThemeSwitch />
             <UserNav />
           </div>
@@ -62,21 +66,33 @@ export default function Reviews() {
       {/* ===== Content ===== */}
       <LayoutBody className='flex flex-col' fixedHeight>
         <div>
-          <h1 className='text-2xl font-bold tracking-tight'>Reviews</h1>
+          <h1 className='text-2xl font-bold tracking-tight'>
+            {t('lbl_reviews')}
+          </h1>
           <p className='text-muted-foreground'>
-            Here&apos;s a list of your reviews!
+            {t('lbl_reviews_description')}
           </p>
         </div>
         <div className='my-4 flex items-end justify-between sm:my-0 sm:items-center'>
           <div className='flex flex-col gap-4 sm:my-4 sm:flex-row'>
+            <Select value={company} onValueChange={setCompany}>
+                <SelectTrigger>
+                  <SelectValue placeholder='Select a company.' />
+                </SelectTrigger>
+              <SelectContent>
+                <SelectItem value='example1'>Company 1</SelectItem>
+                <SelectItem value='example2'>Company 2</SelectItem>
+                <SelectItem value='example3'>Company 3</SelectItem>
+              </SelectContent>
+            </Select>
             <Input
-              placeholder='Filter by user...'
+              placeholder={`${t('lbl_filter_by_user')}...`}
               className='h-9 w-40 lg:w-[250px]'
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
 
-{/*             <Select value={fromReviews.targetCompany} onValueChange={fromReviews.setTargetCompany}>
+            {/*             <Select value={fromReviews.targetCompany} onValueChange={fromReviews.setTargetCompany}>
               <SelectTrigger className='w-36'>
                 <SelectValue>{fromReviews.targetCompany.name}</SelectValue>
               </SelectTrigger>
@@ -99,13 +115,13 @@ export default function Reviews() {
               <SelectItem value='ascending'>
                 <div className='flex items-center gap-4'>
                   <IconSortAscendingLetters size={16} />
-                  <span>Ascending</span>
+                  <span>{t('lbl_ascending')}</span>
                 </div>
               </SelectItem>
               <SelectItem value='descending'>
                 <div className='flex items-center gap-4'>
                   <IconSortDescendingLetters size={16} />
-                  <span>Descending</span>
+                  <span>{t('lbl_descending')}</span>
                 </div>
               </SelectItem>
             </SelectContent>
@@ -143,7 +159,7 @@ export default function Reviews() {
                   size='sm'
                   className={`flex gap-1 border ${review.complied ? 'border-green-300 bg-green-50 hover:bg-green-100 dark:border-green-700 dark:bg-green-950 dark:hover:bg-green-900' : 'border-red-300 bg-red-50 hover:bg-red-100 dark:border-red-700 dark:bg-red-950 dark:hover:bg-red-900'}`}
                 >
-                  {review.complied ? 'Complied' : 'Not Complied'}
+                  {review.complied ? `${t('lbl_complied')}` : `${t('lbl_not_complied')}`}
                   {review.complied ? (
                     <CheckCircledIcon />
                   ) : (

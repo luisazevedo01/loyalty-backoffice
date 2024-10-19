@@ -22,43 +22,43 @@ export interface SideLink extends NavLink {
 
 export const sidelinks: SideLink[] = [
   {
-    title: 'Dashboard',
+    title: 'lbl_dashboard',
     label: '',
     href: '/app',
     icon: <IconLayoutDashboard size={18} />,
   },
   {
-    title: 'History',
+    title: 'lbl_history',
     label: '3',
     href: '/app/history',
     icon: <IconChecklist size={18} />,
   },
   {
-    title: 'Reviews',
+    title: 'lbl_reviews',
     label: '9',
     href: '/app/reviews',
     icon: <IconMessages size={18} />,
   },
   {
-    title: 'Employees',
+    title: 'lbl_employees',
     label: '',
     href: '/app/employees',
     icon: <IconUsers size={18} />,
   },
   {
-    title: 'Loyalty Programs',
+    title: 'lbl_loyalty_programs',
     label: '',
     href: '/app/loyalty-programs',
     icon: <IconFileEuro size={18} />,
   },
   {
-    title: 'Companies',
+    title: 'lbl_companies',
     label: '',
     href: '/app/company',
     icon: <IconBuildingWarehouse size={18} />,
   },
   {
-    title: 'Settings',
+    title: 'lbl_settings',
     label: '',
     href: '/app/settings',
     icon: <IconSettings size={18} />,

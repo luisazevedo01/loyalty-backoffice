@@ -8,8 +8,11 @@ import { Button } from '@/components/custom/button'
 import { IconDownload } from '@tabler/icons-react'
 import { useReactToPrint } from 'react-to-print'
 import { useRef } from 'react'
+import FlagSwitch from '@/components/flag-switch'
+import { useTranslation } from 'react-i18next'
 
 export default function History() {
+  const {t} = useTranslation();
   const componentRef = useRef(null);
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -20,6 +23,7 @@ export default function History() {
       {/* ===== Top Heading ===== */}
       <LayoutHeader>
         <div className='ml-auto flex items-center space-x-4'>
+          <FlagSwitch />
           <ThemeSwitch />
           <UserNav />
         </div>
@@ -28,14 +32,14 @@ export default function History() {
       <LayoutBody className='flex flex-col' fixedHeight>
         <div className='flex items-center justify-between space-y-2'>
           <div>
-            <h1 className='text-2xl font-bold tracking-tight'>History!</h1>
+            <h1 className='text-2xl font-bold tracking-tight'>{t('lbl_history')}!</h1>
             <p className='text-muted-foreground'>
-              Here&apos;s a history of your scans!
+              {t('lbl_history_description')}
             </p>
           </div>
           <div className='flex items-center space-x-2'>
             <Button className='flex gap-1' onClick={handlePrint}>
-              Extract
+              {t('lbl_extract')}
               <IconDownload size={18} />
             </Button>
           </div>

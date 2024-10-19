@@ -23,6 +23,7 @@ import {
 import { cn } from "@/lib/utils"
 import useCheckActiveNav from '@/hooks/use-check-active-nav'
 import { SideLink } from '@/data/sidelinks'
+import { useTranslation } from 'react-i18next'
 
 interface NavProps extends React.HTMLAttributes<HTMLDivElement> {
   isCollapsed: boolean
@@ -88,6 +89,7 @@ function NavLink({
   closeNav,
   subLink = false,
 }: NavLinkProps) {
+  const {t} = useTranslation();
   const { checkActiveNav } = useCheckActiveNav()
   return (
     <Link
@@ -104,7 +106,7 @@ function NavLink({
       aria-current={checkActiveNav(href) ? 'page' : undefined}
     >
       <div className='mr-2'>{icon}</div>
-      {title}
+      {t(title)}
       {label && (
         <div className='ml-2 rounded-lg bg-primary px-1 text-[0.625rem] text-primary-foreground'>
           {label}

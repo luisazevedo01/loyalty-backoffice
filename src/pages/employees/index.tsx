@@ -22,6 +22,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { getInitials } from '@/utils/get-initials'
 import { Pencil2Icon } from '@radix-ui/react-icons'
 import { Outlet } from 'react-router-dom'
+import FlagSwitch from '@/components/flag-switch'
 
 const appText = new Map<string, string>([
   ['employee', 'Employee'],
@@ -83,6 +84,7 @@ export default function Employees() {
       <LayoutHeader>
         <div className='flex w-full items-center justify-between'>
           <div className='ml-auto flex items-center space-x-4'>
+            <FlagSwitch />
             <ThemeSwitch />
             <UserNav />
           </div>

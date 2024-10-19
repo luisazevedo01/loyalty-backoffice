@@ -13,6 +13,11 @@
   "lbl_password": "Password",
   "lbl_dashboard": "Dashboard",
   "lbl_loyal_customers": "Loyal customers",
+  "lbl_employees": "Employees",
+  "lbl_companies": "Companies",
+  "lbl_add_company": "Add company",
+  "lbl_companies_description": "Manage your companies",
+  "lbl_settings": "Settings",
   "lbl_discounts_used": "Discounts used",
   "lbl_spendings": "Spendings",
   "lbl_number_of_stamps": "Nº of Stamps",
@@ -21,6 +26,19 @@
   "lbl_from_last_month": "from last month",
   "lbl_since_last_hour": "since last hour",
   "lbl_overview": "Overview",
-  "lbl_company_name": "Company Name (e.g., ABC Enterprises)"
-
+  "lbl_history": "History",
+  "lbl_history_description": "Here's a history of your scans!",
+  "lbl_extract": "Extract",
+  "lbl_reviews": "Reviews",
+  "lbl_filter_by_user": "Filter by user",
+  "lbl_reviews_description": "Here's a list of your reviews!",
+  "lbl_ascending": "Ascending",
+  "lbl_descending": "Descending",
+  "lbl_company_name": "Company Name (e.g., ABC Enterprises)",
+  "lbl_stamp_card": "Stamp Card",
+  "lbl_cashback": "Cashback",
+  "lbl_voucher": "Voucher",
+  "lbl_coupon": "Coupon",
+  "lbl_points": "Points",
+  "lbl_deal": "Deal"
 }

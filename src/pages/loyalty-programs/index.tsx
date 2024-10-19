@@ -11,11 +11,12 @@ import { UserNav } from '@/components/user-nav'
 import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
 import { useTranslation } from 'react-i18next'
 import useLoyaltyPrograms from './hooks/use-loyalty-programs'
-import StampCards from './stamp-card/list-stamp-card'
-import Points from './loyalty-points/list-loyalty-points'
-import Cashback from './cashback/list-cashback'
-import Vouchers from './voucher/list-vouchers'
-import Deals from './deal/list-deals'
+import StampCards from './components/stamp-card/list-stamp-card'
+import Points from './components/loyalty-points/list-loyalty-points'
+import Cashback from './components/cashback/list-cashback'
+import Vouchers from './components/voucher/list-vouchers'
+import Deals from './components/deal/list-deals'
+import FlagSwitch from '@/components/flag-switch'
 
 export default function LoyaltyPrograms() {
   const fromController = useLoyaltyPrograms()
@@ -26,6 +27,7 @@ export default function LoyaltyPrograms() {
       {/* ===== Top Heading ===== */}
       <LayoutHeader>
         <div className='ml-auto flex items-center space-x-4'>
+          <FlagSwitch />
           <ThemeSwitch />
           <UserNav />
         </div>
@@ -37,10 +39,8 @@ export default function LoyaltyPrograms() {
           <h1 className='text-2xl font-bold tracking-tight md:text-3xl'>
             {t('lbl_loyalty_programs')}
           </h1>
-          {/*           <div className='flex items-center space-x-2'>
-            <Button className='flex gap-1'>Next</Button>
-          </div> */}
         </div>
+
         <Tabs
           orientation='vertical'
           defaultValue='stamp-cards'
@@ -48,14 +48,18 @@ export default function LoyaltyPrograms() {
         >
           <div className='w-full overflow-x-scroll pb-2'>
             <TabsList>
-             {/*  <TabsTrigger value='overview'>Overview</TabsTrigger> */}
-              <TabsTrigger value='stamp-cards'>Stamp Cards</TabsTrigger>
-              <TabsTrigger value='cashback'>Cashback</TabsTrigger>
-              <TabsTrigger value='vouchers'>Vouchers/Coupons</TabsTrigger>
-              <TabsTrigger value='points'>Points</TabsTrigger>
-              <TabsTrigger value='deals'>Deals</TabsTrigger>
+              <TabsTrigger value='stamp-cards'>
+                {t('lbl_stamp_card')}
+              </TabsTrigger>
+              <TabsTrigger value='cashback'>{t('lbl_cashback')}</TabsTrigger>
+              <TabsTrigger value='vouchers'>
+                {t('lbl_voucher')}/{t('lbl_coupon')}
+              </TabsTrigger>
+              <TabsTrigger value='points'>{t('lbl_points')}</TabsTrigger>
+              <TabsTrigger value='deals'>{t('lbl_deal')}</TabsTrigger>
             </TabsList>
           </div>
+
           <TabsContent value='overview' className='space-y-4'>
             <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-4'>
               <Card>
@@ -239,45 +243,22 @@ export default function LoyaltyPrograms() {
             </div>
           </TabsContent>
           <TabsContent value='stamp-cards' className='space-y-4'>
-            <StampCards stamps={fromController.stampCards}/>
+            <StampCards stamps={fromController.stampCards} />
           </TabsContent>
           <TabsContent value='points' className='space-y-4'>
-            <Points points={fromController.points}/>
+            <Points points={fromController.points} />
           </TabsContent>
           <TabsContent value='cashback' className='space-y-4'>
-            <Cashback programs={fromController.cashback}/>
+            <Cashback programs={fromController.cashback} />
           </TabsContent>
           <TabsContent value='vouchers' className='space-y-4'>
-            <Vouchers programs={fromController.vouchers}/>
+            <Vouchers programs={fromController.vouchers} />
           </TabsContent>
           <TabsContent value='deals' className='space-y-4'>
-            <Deals programs={fromController.deals}/>
+            <Deals programs={fromController.deals} />
           </TabsContent>
         </Tabs>
       </LayoutBody>
     </Layout>
   )
 }
-
-const topNav = [
-  {
-    title: 'Overview',
-    href: '/overview',
-    isActive: true,
-  },
-  {
-    title: 'Customers',
-    href: '/customers',
-    isActive: false,
-  },
-  {
-    title: 'Products',
-    href: '/products',
-    isActive: false,
-  },
-  {
-    title: 'Settings',
-    href: '/settings',
-    isActive: false,
-  },
-]
