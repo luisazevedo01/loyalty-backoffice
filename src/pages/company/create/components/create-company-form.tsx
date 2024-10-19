@@ -106,10 +106,6 @@ export default function CreateCompanyForm(props: CreateCompanyFormProps) {
                   <SelectItem value='education'>Education</SelectItem>
                 </SelectContent>
               </Select>
-              <FormDescription>
-                You can manage verified email addresses in your{' '}
-                <Link to='/examples/forms'>email settings</Link>.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -243,24 +239,4 @@ export const companyFormSchema = z.object({
   category: z.string({
     required_error: 'Please select a category.',
   }),
-  // identificationNumber: z.string().min(9).max(14).optional(),
-  // additionalInfo: z.string().max(160).min(4).optional(),
-  // website: z.string({
-  //   required_error: "Please fill the website."
-  // }),
-  // contacts: z
-  //   .array(
-  //     z.object({
-  //       value: z.string().min(9, {
-  //         message: 'Contact must be at least 9 characters.',
-  //       }),
-  //     })
-  //   )
-  //   .optional(),
-  // location: z
-  //   .string()
-  //   .min(3, {
-  //     message: 'The location must be at least 3 characters.',
-  //   })
-  //   .optional(),
 })

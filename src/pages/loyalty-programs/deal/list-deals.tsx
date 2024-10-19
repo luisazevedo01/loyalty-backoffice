@@ -5,12 +5,17 @@ import { Pencil2Icon } from '@radix-ui/react-icons'
 import {
   IconPlus,
 } from '@tabler/icons-react'
+import { useState } from 'react'
+import { DealDialog } from './create-deal'
 
 interface DealsProps {
   programs: any[]
 }
 
 export default function Deals({ programs }: DealsProps) {
+  const [showDialog, setShowDialog] = useState(false)
+  const [filter, setFilter] = useState("")
+
   return (
     <div className='flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-y-0'>
       <div className='my-4 flex items-end justify-between sm:my-0 sm:items-center'>
@@ -18,15 +23,15 @@ export default function Deals({ programs }: DealsProps) {
           <Input
             placeholder='Filter deals...'
             className='h-9 w-40 lg:w-[250px]'
-            value={''}
-            onChange={(e) => console.log('stampcards')}
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
           />
         </div>
         <Button
           variant='outline'
           size='sm'
           className='flex gap-2 hover:opacity-75 light:bg-white'
-          onClick={() => console.log('remove')}
+          onClick={() => setShowDialog(true)}
         >
           Deal
           <IconPlus size={18} />
@@ -34,7 +39,9 @@ export default function Deals({ programs }: DealsProps) {
       </div>
       <Separator className='shadow' />
       <ul className='no-scrollbar grid gap-4 overflow-y-scroll pb-16 pt-4 md:grid-cols-1 lg:grid-cols-2'>
-        {programs.map((deal: (typeof programs)[0], idx) => (
+        {programs
+        .filter(program => program.title.toLowerCase().includes(filter.toLowerCase()))
+        .map((deal: (typeof programs)[0], idx) => (
           <li
             key={`stamp_${idx}`}
             className='rounded-lg border bg-card p-4 hover:shadow-md'
@@ -69,6 +76,7 @@ export default function Deals({ programs }: DealsProps) {
           </li>
         ))}
       </ul>
+      <DealDialog open={showDialog} onOpenChange={setShowDialog}/>
     </div>
   )
 }

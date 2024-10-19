@@ -11,11 +11,11 @@ import { UserNav } from '@/components/user-nav'
 import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
 import { useTranslation } from 'react-i18next'
 import useLoyaltyPrograms from './hooks/use-loyalty-programs'
-import StampCards from './components/stamp-cards'
-import Points from './components/points'
-import Cashback from './components/cashback'
-import Vouchers from './components/vouchers'
-import Deals from './components/deals'
+import StampCards from './stamp-card/list-stamp-card'
+import Points from './loyalty-points/list-loyalty-points'
+import Cashback from './cashback/list-cashback'
+import Vouchers from './voucher/list-vouchers'
+import Deals from './deal/list-deals'
 
 export default function LoyaltyPrograms() {
   const fromController = useLoyaltyPrograms()
@@ -43,16 +43,16 @@ export default function LoyaltyPrograms() {
         </div>
         <Tabs
           orientation='vertical'
-          defaultValue='overview'
+          defaultValue='stamp-cards'
           className='space-y-4'
         >
           <div className='w-full overflow-x-scroll pb-2'>
             <TabsList>
-              <TabsTrigger value='overview'>Overview</TabsTrigger>
+             {/*  <TabsTrigger value='overview'>Overview</TabsTrigger> */}
               <TabsTrigger value='stamp-cards'>Stamp Cards</TabsTrigger>
-              <TabsTrigger value='points'>Points</TabsTrigger>
               <TabsTrigger value='cashback'>Cashback</TabsTrigger>
               <TabsTrigger value='vouchers'>Vouchers/Coupons</TabsTrigger>
+              <TabsTrigger value='points'>Points</TabsTrigger>
               <TabsTrigger value='deals'>Deals</TabsTrigger>
             </TabsList>
           </div>

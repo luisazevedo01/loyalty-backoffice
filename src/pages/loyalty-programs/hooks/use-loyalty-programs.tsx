@@ -13,7 +13,7 @@ interface UseLoyaltyProgramsController {
 
 const programsData = [
   {
-    title: 'Stamp Card 1',
+    title: '2 refeições por 1',
     message: '2 menus pelo preço de 1',
     stamps: 2,
     description: 'Uma descrição....',
@@ -21,7 +21,7 @@ const programsData = [
     type: 'stamp-card',
   },
   {
-    title: 'Stamp Card 2',
+    title: 'Stamp Card',
     message: 'Ganhe 1 na compra de 10',
     stamps: 1,
     description: 'Uma descrição....',
@@ -29,7 +29,7 @@ const programsData = [
     type: 'stamp-card',
   },
   {
-    title: 'Stamp Card 3',
+    title: '1 bebida na compra de 10',
     message: 'Ganhe 2 na compra de 15',
     stamps: 0,
     description: 'Uma descrição....',

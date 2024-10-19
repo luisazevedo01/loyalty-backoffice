@@ -6,7 +6,6 @@
   :root {
     /* Custom CSS Variables */
     --header-height: 4rem;
-
     --radius: 0.5rem;
   }
 
@@ -40,6 +39,10 @@
     --input-background: 0 0% 100%;
 
     --ring: 212.7 26.8% 83.9%;
+
+    /* Scrollbar colors for dark mode */
+    --scrollbar-track: 222.2 84% 4.9%;
+    --scrollbar-thumb: 217.2 32.6% 17.5%;
   }
 
   .light {
@@ -107,6 +110,25 @@
   }
   body {
     @apply min-h-svh w-full bg-background text-foreground;
+  }
+
+  /* Custom scrollbar styles */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-[hsl(var(--scrollbar-track))];
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-[hsl(var(--scrollbar-thumb))];
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--scrollbar-thumb)) hsl(var(--scrollbar-track));
   }
 }
 
